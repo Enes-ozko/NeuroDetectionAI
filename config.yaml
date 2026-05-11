@@ -1,0 +1,14 @@
+data_root: "../dataset"
+max_per_class: 500
+#max_per_class: null
+
+seed: 42
+ 
+img_size: 224
+imagenet_mean: [0.485, 0.456, 0.406]
+imagenet_std:  [0.229, 0.224, 0.225]
+ 
+batch_size: 32
+num_workers: 0
+n_splits: 5
+ 
