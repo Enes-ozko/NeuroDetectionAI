@@ -1,30 +1,31 @@
 import torch
 from torchvision import transforms
 
+MEAN = [0.485, 0.456, 0.406]
+STD  = [0.229, 0.224, 0.225]
 
-def _gaussian_noise(x, std=0.01):
-    return x + std * torch.randn_like(x)
+
+class GaussianNoise:
+    def __init__(self, std=0.03):
+        self.std = std
+
+    def __call__(self, tensor):
+        return tensor + torch.randn_like(tensor) * self.std
 
 
-def build_transforms(cfg):
-    size = cfg["img_size"]
-    mean = cfg["imagenet_mean"]
-    std  = cfg["imagenet_std"]
-
-    train_tf = transforms.Compose([
-        transforms.Resize((size, size)),
-        transforms.RandomRotation(15),
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1, hue=0.05),
+def get_transforms(mode: str, image_size: int = 224):
+    if mode == "train":
+        return transforms.Compose([
+            transforms.Resize((image_size, image_size)),
+            transforms.RandomRotation(15),
+            transforms.RandomHorizontalFlip(),
+            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1),
+            transforms.ToTensor(),
+            transforms.Normalize(MEAN, STD),
+            GaussianNoise(),
+        ])
+    return transforms.Compose([
+        transforms.Resize((image_size, image_size)),
         transforms.ToTensor(),
-        transforms.Lambda(_gaussian_noise),
-        transforms.Normalize(mean=mean, std=std),
+        transforms.Normalize(MEAN, STD),
     ])
-
-    val_tf = transforms.Compose([
-        transforms.Resize((size, size)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=mean, std=std),
-    ])
-
-    return train_tf, val_tf

@@ -1,54 +1,42 @@
 import random
 from pathlib import Path
-
 from PIL import Image
 from torch.utils.data import Dataset
 
 
-CLASS_NAMES = ["glioma", "meningioma", "notumor", "pituitary"]
-IMG_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif"}
-
-
 class BrainTumorDataset(Dataset):
-
-    def __init__(self, root, indices=None, transform=None, max_per_class=None, seed=42):
-        self.root = Path(root)
+    def __init__(self, paths: list, labels: list, transform=None):
+        self.paths     = paths
+        self.labels    = labels
         self.transform = transform
-        self.class_to_idx = {cls: i for i, cls in enumerate(CLASS_NAMES)}
-        self.samples = []
-
-        rng = random.Random(seed)
-
-        for cls_name in CLASS_NAMES:
-            cls_dir = self.root / cls_name
-            if not cls_dir.exists():
-                continue
-
-            imgs = sorted([p for p in cls_dir.iterdir() if p.suffix.lower() in IMG_EXTENSIONS])
-            rng.shuffle(imgs)
-
-            if max_per_class is not None:
-                imgs = imgs[:max_per_class]
-
-            for path in imgs:
-                self.samples.append((path, self.class_to_idx[cls_name]))
-
-        if not self.samples:
-            raise RuntimeError(f"aucune image trouvée dans {self.root.resolve()}")
-
-        if indices is not None:
-            self.samples = [self.samples[i] for i in indices]
 
     def __len__(self):
-        return len(self.samples)
+        return len(self.paths)
 
     def __getitem__(self, idx):
-        path, label = self.samples[idx]
-        img = Image.open(path).convert("RGB")
+        img = Image.open(self.paths[idx]).convert("RGB")
         if self.transform:
             img = self.transform(img)
-        return img, label
+        return img, self.labels[idx]
 
-    @property
-    def labels(self):
-        return [label for _, label in self.samples]
+
+def collect_data(root: str, classes: list, samples_per_class: int = None, seed: int = 42):
+    paths, labels = [], []
+
+    for i, cls in enumerate(classes):
+        folder = Path(root) / cls
+        class_files = []
+        for ext in ("*.jpg", "*.jpeg", "*.png"):
+            class_files.extend(folder.glob(ext))
+
+        class_files = sorted(class_files)
+
+        if samples_per_class is not None:
+            random.seed(seed)
+            class_files = random.sample(class_files, min(samples_per_class, len(class_files)))
+
+        for p in class_files:
+            paths.append(str(p))
+            labels.append(i)
+
+    return paths, labels

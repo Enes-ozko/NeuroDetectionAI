@@ -1,52 +1,48 @@
-import torch
 import numpy as np
-from collections import Counter
-
+import torch
 from torch.utils.data import DataLoader, WeightedRandomSampler
 from sklearn.model_selection import StratifiedKFold
 
 from .dataset import BrainTumorDataset
+from .transforms import get_transforms
 
 
-def get_device():
-    if torch.backends.mps.is_available():
-        return torch.device("mps")
-    elif torch.cuda.is_available():
-        return torch.device("cuda")
-    return torch.device("cpu")
+def make_weighted_sampler(labels: list):
+    labels_arr    = np.array(labels)
+    class_counts  = np.bincount(labels_arr)
+    sample_weights = (1.0 / class_counts)[labels_arr]
+    return WeightedRandomSampler(torch.DoubleTensor(sample_weights), len(sample_weights))
 
 
-def get_stratified_folds(dataset, n_splits=5, seed=42):
-    labels = np.array(dataset.labels)
-    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=seed)
-
+def build_folds(paths, labels, cfg):
+    skf   = StratifiedKFold(n_splits=cfg["n_folds"], shuffle=True, random_state=cfg["seed"])
     folds = []
-    for train_idx, val_idx in skf.split(np.zeros(len(labels)), labels):
-        folds.append((train_idx.tolist(), val_idx.tolist()))
+
+    paths_arr  = np.array(paths)
+    labels_arr = np.array(labels)
+
+    for fold, (train_idx, val_idx) in enumerate(skf.split(paths_arr, labels_arr)):
+        train_paths  = paths_arr[train_idx].tolist()
+        train_labels = labels_arr[train_idx].tolist()
+        val_paths    = paths_arr[val_idx].tolist()
+        val_labels   = labels_arr[val_idx].tolist()
+
+        train_ds = BrainTumorDataset(train_paths, train_labels, get_transforms("train", cfg["image_size"]))
+        val_ds   = BrainTumorDataset(val_paths,   val_labels,   get_transforms("val",   cfg["image_size"]))
+
+        train_loader = DataLoader(train_ds, batch_size=cfg["batch_size"],
+                                  sampler=make_weighted_sampler(train_labels),
+                                  num_workers=cfg["num_workers"], pin_memory = torch.cuda.is_available())
+        val_loader   = DataLoader(val_ds, batch_size=cfg["batch_size"],
+                                  shuffle=False,
+                                  num_workers=cfg["num_workers"], pin_memory = torch.cuda.is_available())
+
+        folds.append({
+            "fold":         fold + 1,
+            "train_loader": train_loader,
+            "val_loader":   val_loader,
+            "train_labels": train_labels,
+            "val_labels":   val_labels,
+        })
 
     return folds
-
-
-def _build_sampler(dataset):
-    labels = dataset.labels
-    class_counts = Counter(labels)
-    class_weights = {cls: 1.0 / count for cls, count in class_counts.items()}
-    sample_weights = torch.tensor([class_weights[l] for l in labels], dtype=torch.float)
-    return WeightedRandomSampler(sample_weights, num_samples=len(sample_weights), replacement=True)
-
-
-def build_dataloaders(root, train_idx, val_idx, train_tf, val_tf, cfg, device):
-    max_pc = cfg.get("max_per_class")
-    pin    = device.type == "cuda"
-    bs     = cfg["batch_size"]
-    nw     = cfg["num_workers"]
-
-    train_ds = BrainTumorDataset(root, indices=train_idx, transform=train_tf, max_per_class=max_pc)
-    val_ds   = BrainTumorDataset(root, indices=val_idx,   transform=val_tf,   max_per_class=max_pc)
-
-    sampler = _build_sampler(train_ds)
-
-    train_loader = DataLoader(train_ds, batch_size=bs, sampler=sampler, num_workers=nw, pin_memory=pin, drop_last=True)
-    val_loader   = DataLoader(val_ds,   batch_size=bs, shuffle=False,   num_workers=nw, pin_memory=pin)
-
-    return train_loader, val_loader
