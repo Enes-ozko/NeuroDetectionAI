@@ -1,0 +1,8 @@
+paths:
+  raw_dir: "data/01_raw"
+  interim_dir: "data/02_interim"
+  processed_dir: "data/03_processed"
+
+image_params:
+  target_size: 224
+  target_format: "png"

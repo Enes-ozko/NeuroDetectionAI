@@ -1,0 +1,60 @@
+# --- Éditeur JetBrains (PyCharm / IntelliJ) ---
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Environment-dependent path to Maven home directory
+/mavenHomeManager.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+.idea/
+*.iml
+
+# =======================================================
+# --- SÉCURITÉ DES DONNÉES MÉDICALES (CRITIQUE) ---
+# =======================================================
+# Ne JAMAIS envoyer de données patients ou de modèles lourds sur Git
+data/
+*.dcm
+*.nii
+*.nii.gz
+*.zip
+
+# --- Modèles Deep Learning (PyTorch) ---
+*.pth
+*.pt
+*.onnx
+runs/
+logs/
+lightning_logs/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Environnements Virtuels ---
+venv/
+env/
+.venv/
+miniconda/
+Anaconda/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints/
+
+# --- Système d'exploitation ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+$RECYCLE.BIN/
