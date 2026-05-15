@@ -5,10 +5,15 @@ from torch.utils.data import Dataset
 
 
 class BrainTumorDataset(Dataset):
-    def __init__(self, paths: list, labels: list, transform=None):
+    def __init__(self, paths: list, labels: list, transform=None, task="multiclass"):
         self.paths     = paths
-        self.labels    = labels
         self.transform = transform
+        self.task      = task
+
+        if task == "binary":
+            self.labels = [0 if l == 2 else 1 for l in labels]
+        else:
+            self.labels = labels
 
     def __len__(self):
         return len(self.paths)

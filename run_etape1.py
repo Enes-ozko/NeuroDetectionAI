@@ -1,6 +1,7 @@
 import warnings
 warnings.filterwarnings("ignore")
 
+import os
 import random
 import yaml
 import numpy as np
@@ -27,11 +28,17 @@ def get_device():
 
 
 if __name__ == "__main__":
+
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
 
+    cfg["task"] = "multiclass"
+
     set_seed(cfg["seed"])
     device = get_device()
+    os.makedirs("outputs", exist_ok=True)
+
+    print(f"Device : {device} | Task : {cfg['task']} | Seed : {cfg['seed']}")
 
     paths, labels = collect_data(
         cfg["dataset_root"],
@@ -40,22 +47,17 @@ if __name__ == "__main__":
         seed=cfg["seed"]
     )
 
-    # Vérification du mapping et du mélange
-    print("Classes :", {i: c for i, c in enumerate(cfg["classes"])})
-    print("Labels (30 premiers):", labels[:30])
+    print(f"Dataset : {len(paths)} images")
+    for i, cls in enumerate(cfg["classes"]):
+        print(f"  {cls} : {labels.count(i)}")
 
     folds = build_folds(paths, labels, cfg)
 
-    # Vérification des folds
     for fold in folds:
         tl = fold["train_labels"]
         vl = fold["val_labels"]
-        print(f"\nFold {fold['fold']}")
-        print(f"  Train : glioma={tl.count(0)} meningioma={tl.count(1)} notumor={tl.count(2)} pituitary={tl.count(3)}")
-        print(f"  Val   : glioma={vl.count(0)} meningioma={vl.count(1)} notumor={vl.count(2)} pituitary={vl.count(3)}")
-        imgs, lbls = next(iter(fold["train_loader"]))
-        print(f"  Batch train : shape={list(imgs.shape)} labels={lbls[:8].tolist()}")
-        imgs, lbls = next(iter(fold["val_loader"]))
-        print(f"  Batch val   : shape={list(imgs.shape)} labels={lbls[:8].tolist()}")
+        print(f"Fold {fold['fold']}/{cfg['n_folds']} — "
+              f"train glioma={tl.count(0)} meningioma={tl.count(1)} notumor={tl.count(2)} pituitary={tl.count(3)} | "
+              f"val glioma={vl.count(0)} meningioma={vl.count(1)} notumor={vl.count(2)} pituitary={vl.count(3)}")
 
-    plot_fold_distribution(folds, cfg["classes"])
+    plot_fold_distribution(folds, cfg["classes"], save_path="outputs/fold_distribution_multiclass.png")
