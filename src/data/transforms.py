@@ -17,12 +17,14 @@ def get_transforms(mode: str, image_size: int = 224):
     if mode == "train":
         return transforms.Compose([
             transforms.Resize((image_size, image_size)),
-            transforms.RandomRotation(15),
+            transforms.RandomRotation(20),
             transforms.RandomHorizontalFlip(),
-            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.1),
+            transforms.RandomVerticalFlip(p=0.2),
+            transforms.ColorJitter(brightness=0.3, contrast=0.3, saturation=0.2),
+            transforms.RandomGrayscale(p=0.1),
             transforms.ToTensor(),
             transforms.Normalize(MEAN, STD),
-            GaussianNoise(),
+            GaussianNoise(std=0.05),
         ])
     return transforms.Compose([
         transforms.Resize((image_size, image_size)),

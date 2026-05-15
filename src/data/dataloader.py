@@ -8,16 +8,15 @@ from .transforms import get_transforms
 
 
 def make_weighted_sampler(labels: list):
-    labels_arr    = np.array(labels)
-    class_counts  = np.bincount(labels_arr)
+    labels_arr     = np.array(labels)
+    class_counts   = np.bincount(labels_arr)
     sample_weights = (1.0 / class_counts)[labels_arr]
     return WeightedRandomSampler(torch.DoubleTensor(sample_weights), len(sample_weights))
 
 
 def build_folds(paths, labels, cfg):
-    skf   = StratifiedKFold(n_splits=cfg["n_folds"], shuffle=True, random_state=cfg["seed"])
-    folds = []
-
+    skf        = StratifiedKFold(n_splits=cfg["n_folds"], shuffle=True, random_state=cfg["seed"])
+    folds      = []
     paths_arr  = np.array(paths)
     labels_arr = np.array(labels)
 
@@ -32,17 +31,21 @@ def build_folds(paths, labels, cfg):
 
         train_loader = DataLoader(train_ds, batch_size=cfg["batch_size"],
                                   sampler=make_weighted_sampler(train_labels),
-                                  num_workers=cfg["num_workers"], pin_memory = torch.cuda.is_available())
+                                  num_workers=cfg["num_workers"],
+                                  pin_memory=torch.cuda.is_available())
         val_loader   = DataLoader(val_ds, batch_size=cfg["batch_size"],
                                   shuffle=False,
-                                  num_workers=cfg["num_workers"], pin_memory = torch.cuda.is_available())
+                                  num_workers=cfg["num_workers"],
+                                  pin_memory=torch.cuda.is_available())
 
         folds.append({
-            "fold":         fold + 1,
-            "train_loader": train_loader,
-            "val_loader":   val_loader,
-            "train_labels": train_labels,
-            "val_labels":   val_labels,
+            "fold":          fold + 1,
+            "train_loader":  train_loader,
+            "val_loader":    val_loader,
+            "train_dataset": train_ds,
+            "val_dataset":   val_ds,
+            "train_labels":  train_labels,
+            "val_labels":    val_labels,
         })
 
     return folds

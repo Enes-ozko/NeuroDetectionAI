@@ -10,3 +10,11 @@ classes:
   - notumor
   - pituitary
 samples_per_class: 500   # null pour utiliser tout le dataset
+
+# Étape 2
+notumor_idx: 2
+lr: 0.001
+epochs: 20
+patience: 5
+weight_decay: 0.0001
+label_smoothing: 0.0

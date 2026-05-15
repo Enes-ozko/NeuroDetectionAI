@@ -39,4 +39,9 @@ def collect_data(root: str, classes: list, samples_per_class: int = None, seed: 
             paths.append(str(p))
             labels.append(i)
 
-    return paths, labels
+    combined = list(zip(paths, labels))
+    random.seed(seed)
+    random.shuffle(combined)
+    paths, labels = zip(*combined)
+
+    return list(paths), list(labels)

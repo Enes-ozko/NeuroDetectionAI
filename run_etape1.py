@@ -40,10 +40,22 @@ if __name__ == "__main__":
         seed=cfg["seed"]
     )
 
-    folds = build_folds(paths, labels, cfg)
-    plot_fold_distribution(folds, cfg["classes"])
-
+    # Vérification du mapping et du mélange
     print("Classes :", {i: c for i, c in enumerate(cfg["classes"])})
+    print("Labels (30 premiers):", labels[:30])
+
+    folds = build_folds(paths, labels, cfg)
+
+    # Vérification des folds
     for fold in folds:
+        tl = fold["train_labels"]
+        vl = fold["val_labels"]
+        print(f"\nFold {fold['fold']}")
+        print(f"  Train : glioma={tl.count(0)} meningioma={tl.count(1)} notumor={tl.count(2)} pituitary={tl.count(3)}")
+        print(f"  Val   : glioma={vl.count(0)} meningioma={vl.count(1)} notumor={vl.count(2)} pituitary={vl.count(3)}")
         imgs, lbls = next(iter(fold["train_loader"]))
-        print(f"Fold {fold['fold']} | train={len(fold['train_labels'])} val={len(fold['val_labels'])} | batch={list(imgs.shape)} | {lbls[:8].tolist()}")
+        print(f"  Batch train : shape={list(imgs.shape)} labels={lbls[:8].tolist()}")
+        imgs, lbls = next(iter(fold["val_loader"]))
+        print(f"  Batch val   : shape={list(imgs.shape)} labels={lbls[:8].tolist()}")
+
+    plot_fold_distribution(folds, cfg["classes"])
