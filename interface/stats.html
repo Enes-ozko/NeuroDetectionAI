@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroDetectionIA — Statistiques</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Neuro<span>Detection</span>IA</span>
+  <a href="/" class="nav-link">Analyse</a>
+  <a href="/stats" class="nav-link active">Statistiques</a>
+  <span class="nav-device" id="navDevice">cpu</span>
+</nav>
+
+<main class="page">
+  <div class="page-title">Statistiques de session</div>
+  <div class="page-sub">Synthese de toutes les analyses effectuees depuis le demarrage</div>
+
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card">
+      <div class="stat-num" id="statTotal">0</div>
+      <div class="stat-lbl">Images analysees</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--red)" id="statTumeur">0</div>
+      <div class="stat-lbl">Tumeurs detectees</div>
+      <div class="stat-sub" id="statTumeurPct">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--amber)" id="statAmbig">0</div>
+      <div class="stat-lbl">Cas ambigus</div>
+      <div class="stat-sub" id="statAmbigPct">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--green)" id="statSain">0</div>
+      <div class="stat-lbl">Sains</div>
+      <div class="stat-sub" id="statSainPct">—</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Repartition des resultats</div>
+      <canvas id="chartDonut" height="220"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-title">Distribution par type de tumeur</div>
+      <canvas id="chartTypes" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title">Distribution des scores de detection</div>
+      <canvas id="chartScoreDist" height="180"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-title">Entropie par cas tumeur</div>
+      <canvas id="chartEntropy" height="180"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-title">Confiance moyenne par classe</div>
+      <canvas id="chartConfClass" height="180"></canvas>
+    </div>
+  </div>
+
+  <div class="full-col card">
+    <div class="card-title">Historique des analyses</div>
+    <div class="table-wrap">
+      <table id="histTable">
+        <thead>
+          <tr>
+            <th>Fichier</th>
+            <th>Score E2</th>
+            <th>Resultat</th>
+            <th>Type</th>
+            <th>Confiance</th>
+            <th>Entropie</th>
+            <th>OOD</th>
+            <th>Region (px)</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="histBody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="histEmpty">Aucune analyse effectuee. Retournez sur la page Analyse.</div>
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/static/stats.js"></script>
+</body>
+</html>
