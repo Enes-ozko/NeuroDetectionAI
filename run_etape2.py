@@ -89,6 +89,9 @@ if __name__ == "__main__":
 
     print(f"Meilleur fold : {best_result['fold']} (val_acc={best_result['best_val_acc']:.3f})")
 
+    save_path_model = "outputs/model_etape2.pth"
+    torch.save(best_result["model"].state_dict(), save_path_model)
+
     metrics = evaluate_etape2(
         model=best_result["model"],
         val_loader=best_result["val_loader"],
