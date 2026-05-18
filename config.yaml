@@ -3,8 +3,8 @@ image_size: 224
 n_folds: 5
 batch_size: 64
 num_workers: 4
-train_root: "/kaggle/input/brain-tumor-mri-dataset/dataset2/Training"
-test_root:  "/kaggle/input/brain-tumor-mri-dataset/dataset2/Testing"
+train_root: "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Training"
+test_root:  "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Testing"
 classes:
   - glioma
   - meningioma
