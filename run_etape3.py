@@ -27,7 +27,7 @@ def filter_and_remap(paths, labels):
     filtered_paths  = []
     filtered_labels = []
     for p, l in zip(paths, labels):
-        if l == 2:      # notumor → exclu
+        if l == 2:     
             continue
         filtered_paths.append(p)
         filtered_labels.append(LABEL_REMAP[l])
@@ -65,7 +65,6 @@ if __name__ == "__main__":
 
     cfg_etape3 = {**cfg, "task": "multiclass"}
 
-    print(f"\nConstruction des {cfg['n_folds']} folds stratifiés...")
     folds = build_folds(paths, labels, cfg_etape3)
 
     print("\nEntraînement Étape 3")
@@ -86,7 +85,7 @@ if __name__ == "__main__":
     )
 
     torch.save(best["model"].state_dict(), "outputs/model_etape3.pth")
-    print("Modèle sauvegardé → outputs/model_etape3.pth")
+    print("Modèle sauvegardé : outputs/model_etape3.pth")
 
     print(f"\nVal acc : {metrics['val_acc']:.3f}")
     print(f"AUC moy : {metrics['mean_auc']:.4f}")

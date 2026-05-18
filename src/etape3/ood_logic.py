@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 
 CLASSES   = ["glioma", "meningioma", "pituitary"]
-LABELS_FR = {"glioma": "Gliome", "meningioma": "Méningiome", "pituitary": "Pituitaire"}
+LABELS_FR = {"glioma": "Gliome", "meningioma": "Meningiome", "pituitary": "Pituitaire"}
 H_MAX     = np.log(len(CLASSES))
 
 
