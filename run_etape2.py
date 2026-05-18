@@ -8,9 +8,11 @@ import argparse
 import numpy as np
 import torch
 import yaml
+from torch.utils.data import DataLoader
 
-from src.data.dataset    import collect_data
+from src.data.dataset    import collect_data, BrainTumorDataset
 from src.data.dataloader import build_folds
+from src.data.transforms import get_transforms
 from src.data.visualize  import plot_fold_distribution
 from src.etape2.model    import get_binary_model
 from src.etape2.train    import train_etape2
@@ -23,7 +25,7 @@ def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.benchmark     = False
 
 
 def get_device():
@@ -38,7 +40,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="config.yaml")
-    parser.add_argument("--fold", type=int, default=None)
+    parser.add_argument("--fold",   type=int, default=None)
     args = parser.parse_args()
 
     with open(args.config) as f:
@@ -52,18 +54,18 @@ if __name__ == "__main__":
 
     print(f"Device : {device} | Task : {cfg['task']} | Seed : {cfg['seed']}")
 
-    paths, labels = collect_data(
-        root=cfg["dataset_root"],
+    train_paths, train_labels = collect_data(
+        root=cfg["train_root"],
         classes=cfg["classes"],
         samples_per_class=cfg.get("samples_per_class"),
         seed=cfg["seed"],
     )
 
-    print(f"Dataset : {len(paths)} images")
+    print(f"Training : {len(train_paths)} images")
     for i, cls in enumerate(cfg["classes"]):
-        print(f"  {cls} : {labels.count(i)}")
+        print(f"  {cls} : {train_labels.count(i)}")
 
-    folds = build_folds(paths, labels, cfg)
+    folds = build_folds(train_paths, train_labels, cfg)
 
     plot_fold_distribution(
         folds,
@@ -89,20 +91,54 @@ if __name__ == "__main__":
 
     print(f"Meilleur fold : {best_result['fold']} (val_acc={best_result['best_val_acc']:.3f})")
 
-    save_path_model = "outputs/model_etape2.pth"
-    torch.save(best_result["model"].state_dict(), save_path_model)
+    torch.save(best_result["model"].state_dict(), "outputs/model_etape2.pth")
 
-    metrics = evaluate_etape2(
+    evaluate_etape2(
         model=best_result["model"],
         val_loader=best_result["val_loader"],
         cfg=cfg,
         device=device,
         val_dataset=best_fold["val_dataset"],
         train_acc=best_result["best_val_acc"],
-        save_path="outputs/etape2_evaluation.png",
+        save_path="outputs/etape2_evaluation_val.png",
+    )
+
+    test_paths, test_labels = collect_data(
+        root=cfg["test_root"],
+        classes=cfg["classes"],
+        samples_per_class=None,
+        seed=cfg["seed"],
+    )
+
+    print(f"Testing : {len(test_paths)} images")
+    for i, cls in enumerate(cfg["classes"]):
+        print(f"  {cls} : {test_labels.count(i)}")
+
+    test_ds = BrainTumorDataset(
+        test_paths, test_labels,
+        get_transforms("val", cfg["image_size"]),
+        task="binary",
+    )
+    test_loader = DataLoader(
+        test_ds,
+        batch_size=cfg["batch_size"],
+        shuffle=False,
+        num_workers=cfg["num_workers"],
+        pin_memory=torch.cuda.is_available(),
+    )
+
+    metrics = evaluate_etape2(
+        model=best_result["model"],
+        val_loader=test_loader,
+        cfg=cfg,
+        device=device,
+        val_dataset=test_ds,
+        train_acc=best_result["best_val_acc"],
+        save_path="outputs/etape2_evaluation_test.png",
     )
 
     accs = [r["best_val_acc"] for r in results]
-    print(f"Val acc : {np.mean(accs):.3f} +/- {np.std(accs):.3f}")
-    print(f"AUC     : {metrics['roc_auc']:.4f}")
-    print(f"Ambigus : {metrics['n_ambig']}/{len(metrics['all_probs'])} ({100*metrics['n_ambig']/len(metrics['all_probs']):.1f}%)")
+    print(f"Val acc (CV) : {np.mean(accs):.3f} +/- {np.std(accs):.3f}")
+    print(f"AUC  (test)  : {metrics['roc_auc']:.4f}")
+    print(f"Ambigus      : {metrics['n_ambig']}/{len(metrics['all_probs'])} "
+          f"({100*metrics['n_ambig']/len(metrics['all_probs']):.1f}%)")

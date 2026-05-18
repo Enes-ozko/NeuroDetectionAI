@@ -1,27 +1,29 @@
 seed: 42
 image_size: 224
 n_folds: 5
-batch_size: 32
-num_workers: 0 # 4 pour Kaggle, 0 en local
-dataset_root: "../dataset"
+batch_size: 64
+num_workers: 4
+train_root: "/kaggle/input/brain-tumor-mri-dataset/dataset2/Training"
+test_root:  "/kaggle/input/brain-tumor-mri-dataset/dataset2/Testing"
 classes:
   - glioma
   - meningioma
   - notumor
   - pituitary
-samples_per_class: 500 # null pour utiliser tout le dataset
+samples_per_class: null
 
-# Etape 2
 notumor_idx: 2
 threshold_low: 0.3
 threshold_high: 0.7
 lr: 0.0005
 weight_decay: 0.0005
 scheduler: "cosine"
-T_max: 30
+T_max: 80
 label_smoothing: 0.05
 mixup_alpha: 0.2
 dropout_p: 0.5
-epochs: 50
-patience: 12
+epochs: 80
+patience: 15
 tta_n_augments: 5
+unfreeze_epoch: 8
+dropout_p_e3: 0.3

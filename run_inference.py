@@ -1,4 +1,5 @@
 import argparse
+import os
 import numpy as np
 import torch
 from PIL import Image
@@ -22,8 +23,8 @@ CLASSES_FR     = ["Gliome", "Méningiome", "Pituitaire"]
 COLORS         = ["#e74c3c", "#2ecc71", "#3498db"]
 
 DEVICE = (
-    torch.device("mps")  if torch.backends.mps.is_available()  else
     torch.device("cuda") if torch.cuda.is_available()           else
+    torch.device("mps")  if torch.backends.mps.is_available()   else
     torch.device("cpu")
 )
 
@@ -62,8 +63,10 @@ def make_figure_sain(img_rgb, proba, save_path):
 
     axes[1].barh(["Tumeur", "Sain"], [proba, 1 - proba], color=["#e74c3c", "#27ae60"])
     axes[1].set_xlim(0, 1)
-    axes[1].axvline(x=THRESHOLD_LOW,  color="gray", linestyle="--", lw=1, label=f"Seuil bas ({THRESHOLD_LOW})")
-    axes[1].axvline(x=THRESHOLD_HIGH, color="gray", linestyle=":",  lw=1, label=f"Seuil haut ({THRESHOLD_HIGH})")
+    axes[1].axvline(x=THRESHOLD_LOW,  color="gray", linestyle="--", lw=1,
+                    label=f"Seuil bas ({THRESHOLD_LOW})")
+    axes[1].axvline(x=THRESHOLD_HIGH, color="gray", linestyle=":",  lw=1,
+                    label=f"Seuil haut ({THRESHOLD_HIGH})")
     axes[1].set_title("Score de détection")
     axes[1].legend(fontsize=8)
     axes[1].spines[["top", "right"]].set_visible(False)
@@ -86,7 +89,8 @@ def make_figure_ambigu(img_rgb, proba, save_path):
 
     axes[1].barh(["Tumeur", "Sain"], [proba, 1 - proba], color=["#e67e22", "#f39c12"])
     axes[1].set_xlim(0, 1)
-    axes[1].axvspan(THRESHOLD_LOW, THRESHOLD_HIGH, alpha=0.15, color="orange", label="Zone de doute")
+    axes[1].axvspan(THRESHOLD_LOW, THRESHOLD_HIGH, alpha=0.15, color="orange",
+                    label="Zone de doute")
     axes[1].axvline(x=THRESHOLD_LOW,  color="gray", linestyle="--", lw=1)
     axes[1].axvline(x=THRESHOLD_HIGH, color="gray", linestyle=":",  lw=1)
     axes[1].set_title("Score de détection")
@@ -139,7 +143,8 @@ def make_figure_tumeur(img_annotated, proba_tumeur, result_e3, bbox, save_path):
     axes[1].legend(fontsize=8)
     axes[1].spines[["top", "right"]].set_visible(False)
 
-    axes[2].barh(["Tumeur", "Sain"], [proba_tumeur, 1 - proba_tumeur], color=["#e74c3c", "#27ae60"])
+    axes[2].barh(["Tumeur", "Sain"], [proba_tumeur, 1 - proba_tumeur],
+                 color=["#e74c3c", "#27ae60"])
     axes[2].set_xlim(0, 1)
     axes[2].axvline(x=THRESHOLD_HIGH, color="gray", linestyle="--", lw=1,
                     label=f"Seuil de détection ({THRESHOLD_HIGH})")
@@ -153,7 +158,9 @@ def make_figure_tumeur(img_annotated, proba_tumeur, result_e3, bbox, save_path):
 
 
 def run_inference(image_path, save_path="outputs/inference_result.png"):
+    os.makedirs("outputs", exist_ok=True)
     print(f"Image  : {image_path}")
+    print(f"Device : {DEVICE}")
 
     pil_img    = Image.open(image_path).convert("RGB")
     img_rgb    = np.array(pil_img.resize((IMG_SIZE, IMG_SIZE)))

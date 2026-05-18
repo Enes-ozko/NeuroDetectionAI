@@ -16,14 +16,14 @@ def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.benchmark     = False
 
 
 def get_device():
-    if torch.backends.mps.is_available():
-        return torch.device("mps")
     if torch.cuda.is_available():
         return torch.device("cuda")
+    if torch.backends.mps.is_available():
+        return torch.device("mps")
     return torch.device("cpu")
 
 
@@ -40,18 +40,29 @@ if __name__ == "__main__":
 
     print(f"Device : {device} | Task : {cfg['task']} | Seed : {cfg['seed']}")
 
-    paths, labels = collect_data(
-        cfg["dataset_root"],
+    train_paths, train_labels = collect_data(
+        cfg["train_root"],
         cfg["classes"],
         samples_per_class=cfg["samples_per_class"],
-        seed=cfg["seed"]
+        seed=cfg["seed"],
     )
 
-    print(f"Dataset : {len(paths)} images")
-    for i, cls in enumerate(cfg["classes"]):
-        print(f"  {cls} : {labels.count(i)}")
+    test_paths, test_labels = collect_data(
+        cfg["test_root"],
+        cfg["classes"],
+        samples_per_class=None,
+        seed=cfg["seed"],
+    )
 
-    folds = build_folds(paths, labels, cfg)
+    print(f"Training : {len(train_paths)} images")
+    for i, cls in enumerate(cfg["classes"]):
+        print(f"  {cls} : {train_labels.count(i)}")
+
+    print(f"Testing  : {len(test_paths)} images")
+    for i, cls in enumerate(cfg["classes"]):
+        print(f"  {cls} : {test_labels.count(i)}")
+
+    folds = build_folds(train_paths, train_labels, cfg)
 
     for fold in folds:
         tl = fold["train_labels"]
