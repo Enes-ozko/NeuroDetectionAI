@@ -6,12 +6,12 @@ DIR_OUTPUT = r"outputs/batch_results"
 
 def lancer_batch():
     os.makedirs(DIR_OUTPUT, exist_ok=True)
-    fichiers = [f for f in os.listdir(DIR_PROCESSED) if f.endswith('_t1.npy')]
+    fichiers = [f for f in os.listdir(DIR_PROCESSED) if f.endswith('_t1.jpg')]
     fichiers.sort()
 
     total = len(fichiers)
     if total == 0:
-        print("Aucun fichier _t1.npy trouvé !")
+        print("Aucun fichier _t1.jpg trouvé !")
         return
 
     print(f"Démarrage du traitement par lot : {total} coupes trouvées.\n")
@@ -20,7 +20,7 @@ def lancer_batch():
 
     for index, fichier in enumerate(fichiers, 1):
         chemin_img = os.path.join(DIR_PROCESSED, fichier)
-        nom_sortie = fichier.replace('_t1.npy', '_result.png')
+        nom_sortie = fichier.replace('_t1.jpg', '_result.png')
         chemin_sortie = os.path.join(DIR_OUTPUT, nom_sortie)
 
         print(f"--- [{index}/{total}] Traitement de {fichier} ---")
@@ -31,18 +31,12 @@ def lancer_batch():
                 alertes_tumeur.append((fichier, score))
         except Exception as e:
             print(f"Erreur sur {fichier} : {e}")
-
-    print("\n" + "="*60)
-    print(f"TRAITEMENT TERMINÉ ! Dossier : {DIR_OUTPUT}")
-    print("="*60)
     
     if len(alertes_tumeur) > 0:
         print(f"\nALERTE : {len(alertes_tumeur)} coupes présentent une probabilité de tumeur > 70% :\n")
         alertes_tumeur.sort(key=lambda x: x[1], reverse=True)
         for fichier, score in alertes_tumeur:
             print(f"  {score * 100:>5.1f}% | {fichier}")
-    else:
-        print("\nBilan : Aucune coupe n'a dépassé le seuil d'alerte de 70%.")
 
 if __name__ == "__main__":
     lancer_batch()
