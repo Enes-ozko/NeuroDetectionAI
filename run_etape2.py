@@ -52,7 +52,6 @@ if __name__ == "__main__":
     device = get_device()
     os.makedirs("outputs", exist_ok=True)
 
-    print(f"Device : {device} | Task : {cfg['task']} | Seed : {cfg['seed']}")
 
     train_paths, train_labels = collect_data(
         root=cfg["train_root"],

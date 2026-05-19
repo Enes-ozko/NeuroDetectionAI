@@ -54,7 +54,7 @@ def load_etape3(path):
 def make_figure_sain(img_rgb, proba, save_path):
     fig, axes = plt.subplots(1, 2, figsize=(11, 5))
     fig.suptitle(
-        f"Aucune anomalie détectée  —  score tumeur : {proba * 100:.1f}%",
+        f"Aucune anomalie détectée  -  score tumeur : {proba * 100:.1f}%",
         fontsize=12, fontweight="bold", color="#27ae60",
     )
     axes[0].imshow(img_rgb)
@@ -63,10 +63,8 @@ def make_figure_sain(img_rgb, proba, save_path):
 
     axes[1].barh(["Tumeur", "Sain"], [proba, 1 - proba], color=["#e74c3c", "#27ae60"])
     axes[1].set_xlim(0, 1)
-    axes[1].axvline(x=THRESHOLD_LOW,  color="gray", linestyle="--", lw=1,
-                    label=f"Seuil bas ({THRESHOLD_LOW})")
-    axes[1].axvline(x=THRESHOLD_HIGH, color="gray", linestyle=":",  lw=1,
-                    label=f"Seuil haut ({THRESHOLD_HIGH})")
+    axes[1].axvline(x=THRESHOLD_LOW,  color="gray", linestyle="--", lw=1, label=f"Seuil bas ({THRESHOLD_LOW})")
+    axes[1].axvline(x=THRESHOLD_HIGH, color="gray", linestyle=":",  lw=1, label=f"Seuil haut ({THRESHOLD_HIGH})")
     axes[1].set_title("Score de détection")
     axes[1].legend(fontsize=8)
     axes[1].spines[["top", "right"]].set_visible(False)
@@ -74,13 +72,13 @@ def make_figure_sain(img_rgb, proba, save_path):
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.close()
-    print(f"  Figure sauvegardée → {save_path}")
+    print(f"Figure sauvegardée {save_path}")
 
 
 def make_figure_ambigu(img_rgb, proba, save_path):
     fig, axes = plt.subplots(1, 2, figsize=(11, 5))
     fig.suptitle(
-        f"Signal détecté mais non concluant  —  score tumeur : {proba * 100:.1f}%  —  relecture recommandée",
+        f"Signal détecté mais non concluant  -  score tumeur : {proba * 100:.1f}%  -  relecture recommandée",
         fontsize=10, fontweight="bold", color="#f39c12",
     )
     axes[0].imshow(img_rgb)
@@ -89,8 +87,7 @@ def make_figure_ambigu(img_rgb, proba, save_path):
 
     axes[1].barh(["Tumeur", "Sain"], [proba, 1 - proba], color=["#e67e22", "#f39c12"])
     axes[1].set_xlim(0, 1)
-    axes[1].axvspan(THRESHOLD_LOW, THRESHOLD_HIGH, alpha=0.15, color="orange",
-                    label="Zone de doute")
+    axes[1].axvspan(THRESHOLD_LOW, THRESHOLD_HIGH, alpha=0.15, color="orange", label="Zone de doute")
     axes[1].axvline(x=THRESHOLD_LOW,  color="gray", linestyle="--", lw=1)
     axes[1].axvline(x=THRESHOLD_HIGH, color="gray", linestyle=":",  lw=1)
     axes[1].set_title("Score de détection")
@@ -100,7 +97,7 @@ def make_figure_ambigu(img_rgb, proba, save_path):
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.close()
-    print(f"  Figure sauvegardée → {save_path}")
+    print(f"Figure sauvegardée : {save_path}")
 
 
 def make_figure_tumeur(img_annotated, proba_tumeur, result_e3, bbox, save_path):
@@ -137,17 +134,13 @@ def make_figure_tumeur(img_annotated, proba_tumeur, result_e3, bbox, save_path):
     axes[1].set_ylim(0, 1.15)
     axes[1].set_ylabel("Probabilité softmax")
     axes[1].set_title("Répartition par type de tumeur")
-    axes[1].axhline(y=0.55, color="gray", linestyle="--", lw=0.8, label="Seuil de confiance")
     axes[1].text(0.98, 0.97, f"Entropie : {entropy:.3f}", transform=axes[1].transAxes,
-                 ha="right", va="top", fontsize=8, color="gray")
+                 ha="right", va="top", fontsize=8)
     axes[1].legend(fontsize=8)
     axes[1].spines[["top", "right"]].set_visible(False)
 
-    axes[2].barh(["Tumeur", "Sain"], [proba_tumeur, 1 - proba_tumeur],
-                 color=["#e74c3c", "#27ae60"])
+    axes[2].barh(["Tumeur", "Sain"], [proba_tumeur, 1 - proba_tumeur], color=["#e74c3c", "#27ae60"])
     axes[2].set_xlim(0, 1)
-    axes[2].axvline(x=THRESHOLD_HIGH, color="gray", linestyle="--", lw=1,
-                    label=f"Seuil de détection ({THRESHOLD_HIGH})")
     axes[2].set_title("Score de détection initial")
     axes[2].legend(fontsize=8)
     axes[2].spines[["top", "right"]].set_visible(False)
@@ -179,11 +172,11 @@ def run_inference(image_path, save_path="outputs/inference_result.png"):
         return
 
     if proba_tumeur <= THRESHOLD_HIGH:
-        print(f"\nSignal ambigu ({proba_tumeur * 100:.1f}%) — le modèle hésite, relecture recommandée")
+        print(f"\nSignal ambigu ({proba_tumeur * 100:.1f}%)")
         make_figure_ambigu(img_rgb, proba_tumeur, save_path)
         return
 
-    print(f"Tumeur probable ({proba_tumeur * 100:.1f}%), lancement de la classification")
+    print(f"Tumeur probable ({proba_tumeur * 100:.1f}%)")
 
     model_e3 = load_etape3(MODEL_E3_PATH)
 
@@ -216,7 +209,7 @@ def run_inference(image_path, save_path="outputs/inference_result.png"):
 
     make_figure_tumeur(img_annotated, proba_tumeur, result_e3, bbox, save_path)
 
-    print(f"\nType           : {result_e3['pred_label']} — scénario {result_e3['scenario']}")
+    print(f"\nType           : {result_e3['pred_label']} - scénario {result_e3['scenario']}")
     print(f"Conclusion     : {result_e3['message']}")
     if bbox:
         print(f"Zone           : x={x}, y={y}, {w}×{h} px")

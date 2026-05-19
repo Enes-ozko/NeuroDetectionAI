@@ -18,7 +18,7 @@ def plot_inference(img_annotated, result, save_path=None):
     title_color = {"A": "#27ae60", "B": "#e74c3c", "C": "#f39c12"}.get(scenario, "black")
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    fig.suptitle(f"Scénario {scenario} — {message}", fontsize=12, fontweight="bold",
+    fig.suptitle(f"Scénario {scenario} - {message}", fontsize=12, fontweight="bold",
                  color=title_color, y=1.01)
 
     axes[0].imshow(img_annotated)
@@ -51,7 +51,7 @@ def plot_inference(img_annotated, result, save_path=None):
 
     if save_path:
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
-        print(f"  Figure sauvegardée → {save_path}")
+        print(f"Figure sauvegardée  {save_path}")
 
     return fig
 
@@ -60,7 +60,7 @@ def plot_calibration(all_probs, all_labels, save_path=None, n_bins=10):
     labels_bin = label_binarize(all_labels, classes=[0, 1, 2])
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    fig.suptitle("Calibration des probabilités — One vs Rest", fontsize=13, fontweight="bold")
+    fig.suptitle("Calibration des probabilités - One vs Rest", fontsize=13, fontweight="bold")
 
     for i, (cls_fr, color, ax) in enumerate(zip(CLASSES_FR, COLORS, axes)):
         fraction_pos, mean_pred = calibration_curve(
@@ -83,6 +83,6 @@ def plot_calibration(all_probs, all_labels, save_path=None, n_bins=10):
 
     if save_path:
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
-        print(f"  Calibration sauvegardée → {save_path}")
+        print(f"Calibration sauvegardée:{save_path}")
 
     return fig

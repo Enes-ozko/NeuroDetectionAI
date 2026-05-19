@@ -25,5 +25,3 @@ dropout_p: 0.5
 epochs: 80
 patience: 15
 tta_n_augments: 5
-unfreeze_epoch: 8
-dropout_p_e3: 0.3

@@ -38,7 +38,6 @@ if __name__ == "__main__":
     device = get_device()
     os.makedirs("outputs", exist_ok=True)
 
-    print(f"Device : {device} | Task : {cfg['task']} | Seed : {cfg['seed']}")
 
     train_paths, train_labels = collect_data(
         cfg["train_root"],
@@ -67,7 +66,7 @@ if __name__ == "__main__":
     for fold in folds:
         tl = fold["train_labels"]
         vl = fold["val_labels"]
-        print(f"Fold {fold['fold']}/{cfg['n_folds']} — "
+        print(f"Fold {fold['fold']}/{cfg['n_folds']} - "
               f"train glioma={tl.count(0)} meningioma={tl.count(1)} notumor={tl.count(2)} pituitary={tl.count(3)} | "
               f"val glioma={vl.count(0)} meningioma={vl.count(1)} notumor={vl.count(2)} pituitary={vl.count(3)}")
 

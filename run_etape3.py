@@ -67,7 +67,7 @@ if __name__ == "__main__":
     )
     train_paths, train_labels = filter_and_remap(all_train_paths, all_train_labels)
 
-    print(f"Training filtre : {len(train_paths)} images")
+    print(f"Training filtré : {len(train_paths)} images")
     for name, idx in [("glioma", 0), ("meningioma", 1), ("pituitary", 2)]:
         print(f"  {name:<12} : {train_labels.count(idx)}")
 
@@ -79,21 +79,18 @@ if __name__ == "__main__":
     )
     test_paths, test_labels = filter_and_remap(all_test_paths, all_test_labels)
 
-    print(f"Testing filtre  : {len(test_paths)} images")
+    print(f"Testing filtré  : {len(test_paths)} images")
     for name, idx in [("glioma", 0), ("meningioma", 1), ("pituitary", 2)]:
         print(f"  {name:<12} : {test_labels.count(idx)}")
 
     cfg_etape3 = {**cfg, "task": "multiclass"}
 
-    print(f"\nConstruction des {cfg['n_folds']} folds stratifies...")
+    print(f"\nConstruction des {cfg['n_folds']} folds stratifiés...")
     folds = build_folds(train_paths, train_labels, cfg_etape3)
 
-    print("\nEntrainement Etape 3")
+    print("\nEntraînement Étape 3")
     results = train_etape3(
-        get_model_fn=lambda: build_model(
-            num_classes=3,
-            dropout=cfg.get("dropout_p_e3", cfg.get("dropout_p", 0.3)),
-        ),
+        get_model_fn=lambda: build_model(num_classes=3, dropout=cfg.get("dropout_p", 0.3)),
         folds=folds,
         cfg=cfg_etape3,
         device=device,
@@ -103,7 +100,7 @@ if __name__ == "__main__":
     print(f"\nMeilleur fold : Fold {best['fold']} (val_acc={best['best_val_acc']:.3f})")
 
     torch.save(best["model"].state_dict(), "outputs/model_etape3.pth")
-    print("Modele sauvegarde -> outputs/model_etape3.pth")
+    print("Modèle sauvegardé : outputs/model_etape3.pth")
 
     evaluate_etape3(
         model=best["model"],
