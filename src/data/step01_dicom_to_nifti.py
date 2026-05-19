@@ -4,7 +4,6 @@ import subprocess
 
 DIR_RAW_SOURCE = r"C:\Users\munar\Desktop\dataset"
 DIR_RAW_PROJET = r"C:\Users\munar\Desktop\NeuroDetectionAI\data\01_raw"
-DCM2NIIX_PATH = r"C:\chemin\vers\dcm2niix.exe"
 
 def importer_et_convertir():
     print("Etape 1 : Importation récursive avec filtrage T1, Masques et classe Sain")
@@ -15,8 +14,10 @@ def importer_et_convertir():
             chemin_source = os.path.join(racine, fichier)
             fichier_lower = fichier.lower()
             racine_lower = racine.lower()
+
             if "t2" in fichier_lower or "flair" in fichier_lower or "dwi" in fichier_lower:
                 continue
+
             if "pituitary" in racine_lower or "hypophyse" in racine_lower:
                 if "prediction" in fichier_lower or "segmentationseed" in fichier_lower:
                     continue
@@ -26,13 +27,18 @@ def importer_et_convertir():
                     continue
 
             nom_propre = fichier
+    
             nom_propre = nom_propre.replace("-seg.nii", "_mask.nii")
             nom_propre = nom_propre.replace("_gtv.nii", "_mask.nii")
             nom_propre = nom_propre.replace("_label-groundTruth.nii", "_mask.nii")
+            
+            # Harmonisation des volumes T1
             nom_propre = nom_propre.replace("-t1n.nii", "_t1.nii")
             nom_propre = nom_propre.replace("-t1c.nii", "_t1.nii")
             nom_propre = nom_propre.replace("_t1c.nii", "_t1.nii")
             nom_propre = nom_propre.replace("_acq-CE3DNavigation_T1w.nii", "_t1.nii")
+
+            # Corrections des extensions compressées
             nom_propre = nom_propre.replace("-.gz_t1.nii", "_t1.nii.gz")
             nom_propre = nom_propre.replace("_.gz_t1.nii", "_t1.nii.gz")
             nom_propre = nom_propre.replace(".gz_t1.nii", "_t1.nii.gz")

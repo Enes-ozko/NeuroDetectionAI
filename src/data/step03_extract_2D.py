@@ -28,7 +28,7 @@ def redimensionner_sans_deformer(image):
     return cv2.resize(square, TAILLE_CIBLE, interpolation=cv2.INTER_AREA)
 
 def traiter_et_extraire():
-    print("Etape 3 : Extraction 2D JPG (Filtre anatomique Hypophyse activé)")
+    print("Etape 3 : Extraction 2D JPG (Filtre anatomique Hypophyse et casse sécurisés)")
     os.makedirs(DIR_PROCESSED, exist_ok=True)
 
     fichiers_t1 = [f for f in os.listdir(DIR_INTERIM) if 't1.nii' in f.lower()]
@@ -55,6 +55,7 @@ def traiter_et_extraire():
             chemin_mask = os.path.join(DIR_INTERIM, f"{patient_id}_mask.nii")
 
         a_un_masque = os.path.exists(chemin_mask)
+        print(f"Patient : {patient_id} | Masque détecté : {a_un_masque}")
 
         img_t1 = nib.load(chemin_t1)
         img_t1_canonical = nib.as_closest_canonical(img_t1)
@@ -74,6 +75,7 @@ def traiter_et_extraire():
         for z in range(0, nb_slices, PAS_SLICE):
             slice_t1 = vol_t1[:, :, z].astype(np.float32)
             conserver_slice = False
+     
             if patient_id.startswith("Gliome_") or patient_id.startswith("Meningiome_"):
                 if a_un_masque:
                     slice_mask = vol_mask[:, :, z].astype(np.uint8)
@@ -83,6 +85,7 @@ def traiter_et_extraire():
                     pixels_cerveau = np.sum(slice_t1 > (max_vol * 0.15))
                     if (pixels_cerveau / (slice_t1.shape[0] * slice_t1.shape[1])) >= 0.15:
                         conserver_slice = True
+            
             elif patient_id.startswith("Hypophyse_"):
                 limite_basse = int(nb_slices * 0.22)
                 limite_haute = int(nb_slices * 0.45)
@@ -90,7 +93,7 @@ def traiter_et_extraire():
                     pixels_cerveau = np.sum(slice_t1 > (max_vol * 0.15))
                     if (pixels_cerveau / (slice_t1.shape[0] * slice_t1.shape[1])) >= 0.10:
                         conserver_slice = True
-
+            
             elif patient_id.startswith("Sain_"):
                 pixels_cerveau = np.sum(slice_t1 > (max_vol * 0.15))
                 total_pixels = slice_t1.shape[0] * slice_t1.shape[1]
@@ -110,7 +113,7 @@ def traiter_et_extraire():
                 cv2.imwrite(os.path.join(DIR_PROCESSED, nom_t1), slice_t1_final)
                 slices_valides += 1
 
-        print(f"Patient {patient_id} : {slices_valides} coupes réelles extraites.")
+        print(f"Patient {patient_id} : {slices_valides} coupes extraites.")
         patients_traites += 1
 
 if __name__ == "__main__":

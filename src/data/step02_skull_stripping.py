@@ -21,7 +21,7 @@ def enlever_crane():
             shutil.copy2(chemin_source, chemin_dest)
             continue
 
-        if fichier.startswith("Sain_") or fichier.startswith("Hypophyse_") or fichier.startswith("sub-"):
+        if fichier.startswith("Sain_") or fichier.startswith("Hypophyse_"):
             if not os.path.exists(chemin_dest):
                 print(f"Stripping en cours pour : {fichier}")
                 img = ants.image_read(chemin_source)
