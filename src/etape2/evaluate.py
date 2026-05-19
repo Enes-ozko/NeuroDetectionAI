@@ -47,17 +47,14 @@ def _predict_tta(model, val_dataset, cfg, device, n_augments: int = 5):
 
 
 # Évaluation principale 
-
 def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
                     train_acc: float = None, save_path: str = "outputs/etape2_evaluation.png"):
    
     n_tta = cfg.get("tta_n_augments", 0)
 
     if n_tta > 0 and val_dataset is not None:
-        print(f"  ► Évaluation avec TTA ({n_tta} passes)...")
         all_probs, all_labels = _predict_tta(model, val_dataset, cfg, device, n_augments=n_tta)
     else:
-        print("  ► Évaluation sans TTA (1 passe)...")
         all_probs, all_labels = _predict_single(model, val_loader, device)
 
     preds = np.where(
@@ -75,23 +72,23 @@ def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
     fpr, tpr, _ = roc_curve(all_labels, all_probs)
     roc_auc     = auc(fpr, tpr)
 
-    print(f"\n  AUC            = {roc_auc:.4f}")
-    print(f"  Val Acc (0.5)  = {val_acc:.4f}")
-    print(f"  Ambigus        = {n_ambig}/{len(preds)} "
+    print(f"\nAUC            = {roc_auc:.4f}")
+    print(f"Val Acc (0.5)  = {val_acc:.4f}")
+    print(f"Ambigus        = {n_ambig}/{len(preds)} "
           f"({100*n_ambig/len(preds):.1f}%)")
 
 
     if train_acc is not None:
         gap = train_acc - val_acc
-        flag = "POSSIBLE OVERFITTING" if gap > 0.08 else "✓ OK"
-        print(f"  Train/Val gap  = {gap:+.4f}  {flag}")
+        flag = "POSSIBLE OVERFITTING" if gap > 0.08 else "OK"
+        print(f"Train/Val gap  = {gap:+.4f}  {flag}")
 
-    print("\n  Rapport de classification (seuil 0.5) :")
+    print("\nRapport de classification (seuil 0.5) :")
     print(classification_report(all_labels, preds_binary,
                                 target_names=["Sain", "Tumeur"], digits=4))
 
     fig, axes = plt.subplots(1, 3, figsize=(16, 5))
-    fig.suptitle("Étape 2 — Évaluation binaire tumeur/sain", fontweight="bold")
+    fig.suptitle("Étape 2 - Évaluation binaire tumeur/sain", fontweight="bold")
 
     # Matrice de confusion 
     if cm.size > 0:
@@ -131,7 +128,7 @@ def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.show()
-    print(f"\n  Graphe sauvegardé → {save_path}")
+    print(f"\nGraphe sauvegardé:{save_path}")
 
     return {
         "val_acc":  val_acc,

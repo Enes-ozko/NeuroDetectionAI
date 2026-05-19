@@ -50,8 +50,6 @@ if __name__ == "__main__":
     device = get_device()
     os.makedirs("outputs", exist_ok=True)
 
-    print(f"Device : {device} | Task : {cfg['task']} | Seed : {cfg['seed']}")
-
     paths, labels = collect_data(
         root=cfg["dataset_root"],
         classes=cfg["classes"],

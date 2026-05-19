@@ -29,7 +29,7 @@ def evaluate_etape3(model, val_loader, device, save_path="outputs/etape3_evaluat
     all_labels = np.array(all_labels)
     all_preds  = all_probs.argmax(axis=1)
 
-    print("\n  Rapport de classification :")
+    print("\nRapport de classification :")
     print(classification_report(all_labels, all_preds, target_names=CLASSES, digits=4))
 
     cm         = confusion_matrix(all_labels, all_preds)
@@ -42,7 +42,7 @@ def evaluate_etape3(model, val_loader, device, save_path="outputs/etape3_evaluat
         print(f"  AUC {cls:<12} = {aucs[cls]:.4f}")
 
     mean_auc = np.mean(list(aucs.values()))
-    print(f"  AUC moyenne    = {mean_auc:.4f}")
+    print(f"AUC moyenne    = {mean_auc:.4f}")
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
     fig.suptitle("Étape 3 — Évaluation multiclasse", fontsize=14, fontweight="bold")
@@ -72,7 +72,7 @@ def evaluate_etape3(model, val_loader, device, save_path="outputs/etape3_evaluat
     plt.tight_layout()
     plt.savefig(save_path, dpi=150)
     plt.close()
-    print(f"\n  Graphe sauvegardé → {save_path}")
+    print(f"\nGraphe sauvegardé:{save_path}")
 
     return {
         "val_acc":  float((all_preds == all_labels).mean()),

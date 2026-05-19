@@ -121,7 +121,7 @@ def train_one_fold(model, fold_data, cfg, device):
         current_lr = optimizer.param_groups[0]["lr"]
 
         print(
-            f"  Epoch {epoch+1:03d}/{cfg['epochs']} | "
+            f"Epoch {epoch+1:03d}/{cfg['epochs']} | "
             f"loss={total_loss/len(train_loader):.4f} | "
             f"train_acc={train_acc:.3f} | val_acc={val_acc:.3f} | "
             f"prob_mean={all_probs.mean():.3f} | lr={current_lr:.2e}"
@@ -134,7 +134,7 @@ def train_one_fold(model, fold_data, cfg, device):
         else:
             no_improve += 1
             if no_improve >= cfg["patience"]:
-                print(f"  Early stopping epoch {epoch+1} | best val_acc={best_val_acc:.3f}")
+                print(f"Early stopping epoch {epoch+1} | best val_acc={best_val_acc:.3f}")
                 break
 
     model.load_state_dict(best_weights)
@@ -159,9 +159,9 @@ def train_etape2(get_model_fn, folds, cfg, device):
         })
 
     accs = [r["best_val_acc"] for r in results]
-    print(f"  Moyenne val_acc : {np.mean(accs):.3f} ± {np.std(accs):.3f}")
+    print(f"Moyenne val_acc : {np.mean(accs):.3f} +/- {np.std(accs):.3f}")
 
     best = max(results, key=lambda r: r["best_val_acc"])
-    print(f"  Meilleur fold   : Fold {best['fold']} ({best['best_val_acc']:.3f})")
+    print(f"Meilleur fold : Fold {best['fold']} ({best['best_val_acc']:.3f})")
 
     return results
