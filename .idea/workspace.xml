@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cdb73732-6cd8-468e-9bde-723367378c72" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/NeuroDetectionAI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z042_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z043_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z044_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z045_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z046_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z047_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z048_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z049_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z050_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z051_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z052_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z053_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z054_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z055_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z056_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z057_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z058_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z059_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z060_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z061_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z062_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z063_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z064_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z065_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z066_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z067_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z068_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z069_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z070_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z071_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z072_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z073_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z074_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z075_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z076_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z077_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z078_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z079_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z080_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z081_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z082_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z083_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z084_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z085_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z086_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z087_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z088_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z089_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z090_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z091_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z092_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z093_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z094_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z095_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z096_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z097_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z098_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z099_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z100_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z101_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z102_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z103_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z104_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z105_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z106_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z107_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z108_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z109_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z110_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z111_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z112_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z113_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z114_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z115_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z116_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z117_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z118_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z119_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z120_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z121_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z122_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z123_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z124_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z125_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z126_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z127_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z128_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z129_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z130_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z131_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z132_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z133_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z134_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z135_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z136_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z137_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z138_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z139_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z140_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z141_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z142_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z143_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z144_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z145_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z146_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z147_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z148_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z149_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z150_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-100.gz_z151_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z042_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z043_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z044_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z045_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z046_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z047_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z048_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z049_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z050_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z051_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z052_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z053_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z054_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z055_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z056_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z057_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z058_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z059_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z060_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z061_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z062_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z063_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z064_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z065_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z066_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z067_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z068_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z069_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z070_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z071_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z072_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z073_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z074_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z075_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z076_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z077_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z078_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z079_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z080_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z081_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z082_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z083_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z084_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z085_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z086_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z087_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z088_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z089_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z090_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z091_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z092_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z093_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z094_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z095_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z096_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z097_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z098_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z099_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z100_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z101_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z102_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z103_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z104_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z105_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z106_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z107_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z108_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z109_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z110_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z111_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z112_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z113_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z114_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z115_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z116_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z117_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z118_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z119_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z120_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z121_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z122_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z123_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z124_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z125_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z126_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z127_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z128_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z129_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z130_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z131_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z132_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z133_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z134_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z135_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z136_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z137_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z138_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z139_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z140_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z141_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z142_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z143_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z144_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z145_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z146_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z147_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z148_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z149_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z150_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00005-101.gz_z151_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z032_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z033_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z034_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z035_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z036_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z037_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z038_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z039_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z040_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z041_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z042_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z043_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z044_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z045_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z046_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z047_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z048_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z049_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z050_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z051_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z052_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z053_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z054_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z055_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z056_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z057_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z058_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z059_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z060_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z061_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z062_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z063_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z064_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z065_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z066_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z067_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z068_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z069_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z070_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z071_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z072_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z073_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z074_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z075_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z076_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z077_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z078_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z079_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z080_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z081_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z082_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z083_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z084_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z085_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z086_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z087_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z088_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z089_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z090_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z091_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z092_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z093_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z094_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z095_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z096_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z097_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z098_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z099_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z100_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z101_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z102_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z103_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z104_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z105_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z106_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z107_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z108_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z109_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z110_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z111_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z112_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z113_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z114_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z115_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z116_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z117_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z118_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z119_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z120_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z121_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z122_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z123_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z124_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z125_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z126_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z127_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z128_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z129_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z130_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z131_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z132_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z133_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z134_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z135_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z136_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z137_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z138_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z139_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z140_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z141_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z142_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z143_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z144_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z145_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z146_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Gliome_BraTS-GLI-00006-100.gz_z147_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z018_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z019_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z020_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z021_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z022_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z023_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z024_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z025_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z026_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z027_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z028_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z029_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z030_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z031_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z032_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z033_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z034_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z035_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z036_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z037_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z038_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z039_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z040_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z041_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z042_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z043_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z044_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z045_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z046_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z047_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z048_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z049_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z050_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z051_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z052_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z053_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z054_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/batch_results/Meningiome_BraTS-MEN-RT-0002-1.gz_z055_result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z074_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z076_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z078_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z084_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z086_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z088_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z094_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z096_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z098_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z104_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z106_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z108_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z114_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00006-101_z116_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00008-100_z056_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00008-100_z062_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00008-100_z064_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00008-100_z072_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00008-100_z074_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00008-100_z096_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z046_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z046_t1_gradcam.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z048_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z050_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z056_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z058_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/images/Gliome_BraTS-GLI-00020-100_z060_t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/step01_dicom_to_nifti.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/step02_skull_stripping.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/step03_extract_2D.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/test2No.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/test3M.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/test3M_gradcam.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/test4P.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/test4P_gradcam.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/test5Inco.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/testG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/images/testG_gradcam.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/model_etape2.pth" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/model_etape2.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/model_etape3.pth" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/model_etape3.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/session.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/session.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_etape2.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_etape2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_etape3.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_etape3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_inference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/etape2/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etape2/evaluate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/etape2/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etape2/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/etape3/evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etape3/evaluate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/etape3/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etape3/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/etape3/vis_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/etape3/vis_utils.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WAKS0U&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Enes-ozko/NeuroDetectionAI.git&quot;,
+    &quot;accountId&quot;: &quot;838fab48-0505-4590-b8d3-634cb244f881&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="3DZTqxiBajg4BJSbMGoF3fBL4Rx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "interface",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/munar/Desktop/NeuroDetectionIA/NeuroDetectionAI/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\munar\Desktop\NeuroDetectionIA\NeuroDetectionAI\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\munar\Desktop\NeuroDetectionIA\NeuroDetectionAI\data\01_raw" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdb73732-6cd8-468e-9bde-723367378c72" name="Changes" comment="" />
+      <created>1778488786919</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778488786919</updated>
+      <workItem from="1778488788245" duration="10652000" />
+      <workItem from="1778832697711" duration="24119000" />
+      <workItem from="1779104875317" duration="4352000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

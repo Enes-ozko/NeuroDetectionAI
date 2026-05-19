@@ -72,7 +72,7 @@ def evaluate_etape3(model, val_loader, device, save_path="outputs/etape3_evaluat
     plt.tight_layout()
     plt.savefig(save_path, dpi=150)
     plt.close()
-    print(f"\n  Graphe sauvegardé → {save_path}")
+    print(f"\nGraphe sauvegardé:{save_path}")
 
     return {
         "val_acc":  float((all_preds == all_labels).mean()),

@@ -14,44 +14,34 @@ let files = [];
 let session = [];
 
 async function loadSession() {
-  try {
-    const r = await fetch(`${API}/session`);
-    if (r.ok) session = await r.json();
-  } catch { session = []; }
+  const r = await fetch(`${API}/session`);
+  session = await r.json();
 }
 
 async function saveSession(newResults) {
   const light = newResults.map(({ src, annotated_src, ...rest }) => rest);
-  try {
-    await fetch(`${API}/session`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(light),
-    });
-  } catch {}
+  await fetch(`${API}/session`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(light),
+  });
 }
 
 async function deleteFromSession(filename) {
-  try {
-    await fetch(`${API}/session/${encodeURIComponent(filename)}`, { method: "DELETE" });
-    session = session.filter(r => r.filename !== filename);
-  } catch {}
+  await fetch(`${API}/session/${encodeURIComponent(filename)}`, { method: "DELETE" });
+  session = session.filter(r => r.filename !== filename);
 }
 
 async function checkModels() {
   const statusEl = document.getElementById("modelStatus");
   if (!statusEl) return;
-  try {
-    const r = await fetch(`${API}/status`);
-    const d = await r.json();
-    document.getElementById("navDevice").textContent = d.device;
-    statusEl.innerHTML = `
-      <div class="model-pill ${d.e2 ? "ok" : "missing"}"><span class="dot"></span>Etape 2 — ${d.e2 ? "pret" : "manquant"}</div>
-      <div class="model-pill ${d.e3 ? "ok" : "missing"}"><span class="dot"></span>Etape 3 — ${d.e3 ? "pret" : "manquant"}</div>
-    `;
-  } catch {
-    statusEl.innerHTML = `<div class="model-pill missing"><span class="dot"></span>API non disponible — mode demo</div>`;
-  }
+  const r = await fetch(`${API}/status`);
+  const d = await r.json();
+  document.getElementById("navDevice").textContent = d.device;
+  statusEl.innerHTML = `
+    <div class="model-pill ${d.e2 ? "ok" : "missing"}"><span class="dot"></span>Etape 2 — ${d.e2 ? "pret" : "manquant"}</div>
+    <div class="model-pill ${d.e3 ? "ok" : "missing"}"><span class="dot"></span>Etape 3 — ${d.e3 ? "pret" : "manquant"}</div>
+  `;
 }
 
 function fmtSize(b) {
@@ -123,28 +113,6 @@ function renderQueue() {
   });
 }
 
-function fakeDemoResult(filename, idx) {
-  const seed = filename.split("").reduce((a, c, i) => a + c.charCodeAt(0) * (i + 1), idx * 13);
-  let s = seed;
-  const rng = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
-  const p = rng();
-  if (p < 0.3) return { scenario: "sain", proba: p };
-  if (p < 0.5) return { scenario: "ambig", proba: p };
-  const raw = [rng(), rng(), rng()];
-  const sum = raw.reduce((a, b) => a + b, 0);
-  const probs = raw.map(v => v / sum);
-  const H = -probs.reduce((a, v) => a + v * Math.log(v + 1e-9), 0);
-  const H_max = Math.log(3);
-  const ood = H / H_max > 0.75;
-  const predIdx = probs.indexOf(Math.max(...probs));
-  const classes = ["Gliome", "Meningiome", "Pituitaire"];
-  return {
-    scenario: "tumeur", proba: p, type: classes[predIdx], probs, predIdx,
-    confidence: probs[predIdx], entropy: H, entropy_norm: H / H_max, ood,
-    bbox: ood ? null : { x: 60 + Math.floor(rng() * 40), y: 55 + Math.floor(rng() * 40), w: 80 + Math.floor(rng() * 60), h: 70 + Math.floor(rng() * 50) },
-  };
-}
-
 async function analyzeFile(file, idx) {
   const pb    = document.getElementById(`qi-pb-${idx}`);
   const pf    = document.getElementById(`qi-pf-${idx}`);
@@ -154,18 +122,12 @@ async function analyzeFile(file, idx) {
   badge.textContent = "Analyse...";
   await animateProgress(pf, 40, 300);
 
-  let result;
-  try {
-    const fd = new FormData();
-    fd.append("file", file);
-    const r = await fetch(`${API}/analyze`, { method: "POST", body: fd });
-    result = await r.json();
-    await animateProgress(pf, 100, 200);
-  } catch {
-    await sleep(400 + Math.random() * 300);
-    result = fakeDemoResult(file.name, idx);
-    await animateProgress(pf, 100, 200);
-  }
+  const fd = new FormData();
+  fd.append("file", file);
+  const r = await fetch(`${API}/analyze`, { method: "POST", body: fd });
+  if (!r.ok) throw new Error(`Erreur API : ${r.status}`);
+  const result = await r.json();
+  await animateProgress(pf, 100, 200);
 
   result.filename = file.name;
 
@@ -252,8 +214,8 @@ function buildResultBlock(result) {
       ${imgTag(result.src_url, "IRM originale")}
     </div>
     <div class="result-image-panel">
-      <div class="result-image-label">Activation Grad-CAM++ ${result.annotated_url ? "" : "(simulation)"}</div>
-      ${imgTag(result.annotated_url || result.src_url, "Grad-CAM")}
+      <div class="result-image-label">Activation Grad-CAM++</div>
+      ${imgTag(result.annotated_url, "Grad-CAM")}
     </div>
   `;
   container.appendChild(imagesSection);
@@ -343,13 +305,21 @@ async function runAnalysis() {
 
   const allResults = [];
   for (let i = 0; i < files.length; i++) {
-    const result = await analyzeFile(files[i], i);
-    allResults.push(result);
+    try {
+      const result = await analyzeFile(files[i], i);
+      allResults.push(result);
+    } catch (err) {
+      const badge = document.getElementById(`qi-badge-${i}`);
+      if (badge) { badge.className = "badge badge-missing"; badge.textContent = "Erreur"; }
+      console.error(err);
+    }
   }
 
-  session = [...session, ...allResults];
-  await saveSession(allResults);
-  renderAllResults();
+  if (allResults.length) {
+    session = [...session, ...allResults];
+    await saveSession(allResults);
+    renderAllResults();
+  }
 
   files = [];
   renderQueue();
