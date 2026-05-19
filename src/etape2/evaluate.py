@@ -45,19 +45,16 @@ def _predict_tta(model, val_dataset, cfg, device, n_augments: int = 5):
 
     return np.array(all_probs), np.array(all_labels)
 
-
-# Évaluation principale 
-
 def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
                     train_acc: float = None, save_path: str = "outputs/etape2_evaluation.png"):
    
     n_tta = cfg.get("tta_n_augments", 0)
 
     if n_tta > 0 and val_dataset is not None:
-        print(f"  ► Évaluation avec TTA ({n_tta} passes)...")
+        print(f"Évaluation avec TTA ({n_tta} passes)")
         all_probs, all_labels = _predict_tta(model, val_dataset, cfg, device, n_augments=n_tta)
     else:
-        print("  ► Évaluation sans TTA (1 passe)...")
+        print("Évaluation sans TTA (1 passe)")
         all_probs, all_labels = _predict_single(model, val_loader, device)
 
     preds = np.where(
@@ -66,8 +63,7 @@ def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
     )
     mask_clear = preds != -1
     n_ambig    = np.sum(preds == -1)
-
-    # Métriques 
+ 
     preds_binary = (all_probs > 0.5).astype(int)
     val_acc      = (preds_binary == all_labels).mean()
 
@@ -83,17 +79,14 @@ def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
 
     if train_acc is not None:
         gap = train_acc - val_acc
-        flag = "POSSIBLE OVERFITTING" if gap > 0.08 else "✓ OK"
+        flag = "POSSIBLE OVERFITTING" if gap > 0.08 else "OK"
         print(f"  Train/Val gap  = {gap:+.4f}  {flag}")
 
     print("\n  Rapport de classification (seuil 0.5) :")
-    print(classification_report(all_labels, preds_binary,
-                                target_names=["Sain", "Tumeur"], digits=4))
-
+    print(classification_report(all_labels, preds_binary,target_names=["Sain", "Tumeur"], digits=4))
     fig, axes = plt.subplots(1, 3, figsize=(16, 5))
     fig.suptitle("Étape 2 — Évaluation binaire tumeur/sain", fontweight="bold")
 
-    # Matrice de confusion 
     if cm.size > 0:
         sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=axes[0],
                     xticklabels=["Sain", "Tumeur"],
@@ -111,7 +104,6 @@ def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
     axes[1].set_ylabel("TPR (Vrais Positifs)")
     axes[1].legend(loc="lower right")
 
-    # Confiance slice par slice avec zones de décision
     colors = np.where(all_probs > cfg["threshold_high"], "red",
              np.where(all_probs < cfg["threshold_low"], "green", "orange"))
     axes[2].scatter(range(len(all_probs)), all_probs, c=colors, s=4, alpha=0.6)
@@ -131,7 +123,7 @@ def evaluate_etape2(model, val_loader, cfg, device, val_dataset=None,
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.show()
-    print(f"\n  Graphe sauvegardé → {save_path}")
+    print(f"\n  Graphe sauvegardé:{save_path}")
 
     return {
         "val_acc":  val_acc,

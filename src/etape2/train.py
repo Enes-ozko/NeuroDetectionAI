@@ -5,9 +5,6 @@ import torch.nn as nn
 
 from src.etape2.model import freeze_bn
 
-
-# Mixup 
-
 def mixup_batch(imgs: torch.Tensor, labels: torch.Tensor, alpha: float = 0.2):
 
     if alpha <= 0:
@@ -31,7 +28,6 @@ def mixup_loss(loss_fn, logits, labels_a, labels_b, lam):
 def smooth_labels(labels: torch.Tensor, epsilon: float = 0.05) -> torch.Tensor:
     return labels * (1 - epsilon) + (1 - labels) * epsilon
 
-
 def tta_predict(model, imgs_pil_list, tta_transform, n: int, device: str) -> np.ndarray:
 
     all_probs = []
@@ -48,16 +44,9 @@ def train_one_fold(model, fold_data, cfg, device):
     val_loader   = fold_data["val_loader"]
 
     optimizer = torch.optim.AdamW(
-        filter(lambda p: p.requires_grad, model.parameters()),
-        lr=cfg["lr"],
-        weight_decay=cfg["weight_decay"],
-    )
+        filter(lambda p: p.requires_grad, model.parameters()),lr=cfg["lr"], weight_decay=cfg["weight_decay"],)
 
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer,
-        T_max=cfg.get("T_max", cfg["epochs"]),
-        eta_min=cfg["lr"] * 0.01,
-    )
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=cfg.get("T_max", cfg["epochs"]), eta_min=cfg["lr"] * 0.01,)
 
     loss_fn      = nn.BCEWithLogitsLoss()
     mixup_alpha  = cfg.get("mixup_alpha", 0.2)
@@ -134,7 +123,7 @@ def train_one_fold(model, fold_data, cfg, device):
         else:
             no_improve += 1
             if no_improve >= cfg["patience"]:
-                print(f"  Early stopping epoch {epoch+1} | best val_acc={best_val_acc:.3f}")
+                print(f"Early stopping epoch {epoch+1} | best val_acc={best_val_acc:.3f}")
                 break
 
     model.load_state_dict(best_weights)
@@ -159,9 +148,9 @@ def train_etape2(get_model_fn, folds, cfg, device):
         })
 
     accs = [r["best_val_acc"] for r in results]
-    print(f"  Moyenne val_acc : {np.mean(accs):.3f} ± {np.std(accs):.3f}")
+    print(f"  Moyenne val_acc : {np.mean(accs):.3f} +/- {np.std(accs):.3f}")
 
     best = max(results, key=lambda r: r["best_val_acc"])
-    print(f"  Meilleur fold   : Fold {best['fold']} ({best['best_val_acc']:.3f})")
+    print(f"Meilleur fold: Fold {best['fold']} ({best['best_val_acc']:.3f})")
 
     return results

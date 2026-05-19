@@ -17,11 +17,7 @@ def get_binary_model(dropout_p: float = 0.5):
             param.requires_grad = True
 
     in_features = model.classifier[3].in_features
-    model.classifier[3] = nn.Sequential(
-        nn.BatchNorm1d(in_features),   
-        nn.Dropout(p=dropout_p),
-        nn.Linear(in_features, 1),
-    )
+    model.classifier[3] = nn.Sequential(nn.BatchNorm1d(in_features), nn.Dropout(p=dropout_p), nn.Linear(in_features, 1),)
 
     return model
 
