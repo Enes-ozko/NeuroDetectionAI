@@ -26,5 +26,14 @@ data/02_interim/
 data/03_processed/
 !data/03_processed/train/.gitkeep
 !data/03_processed/test/.gitkeep
+data/01_raw/
+data/02_interim/
+data/03_processed/
+!data/03_processed/train/.gitkeep
+!data/03_processed/test/.gitkeep
+
+outputs/
+
+dataset/
 
 outputs/
