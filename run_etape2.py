@@ -46,6 +46,10 @@ def main():
         save_path="outputs/etape2_evaluation.png",
     )
 
+# === LIGNES À AJOUTER ICI ===
+    torch.save(best["model"].state_dict(), "outputs/mobilenet_binaire.pth")
+    print("\n✅ Modèle binaire sauvegardé avec succès dans outputs/mobilenet_binaire.pth !")
+
 
 if __name__ == "__main__":
     main()

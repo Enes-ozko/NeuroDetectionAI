@@ -1,8 +1,8 @@
 seed: 42
 image_size: 224
-n_folds: 5
-num_workers: 0
-dataset_root: "dataset" 
+n_folds: 5                # Test local : 2 
+num_workers: 2            # Test local : 0 
+dataset_root: "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Training" # Test local : "../dataset/Training"
 
 classes:
   - glioma
@@ -10,15 +10,15 @@ classes:
   - notumor
   - pituitary
 
-samples_per_class: null  
+samples_per_class: null   # Test local : 50 
 batch_size: 32          
 
 notumor_idx: 2
 pretrained: true
 
-lr: 0.001                
+lr: 0.0005                
 weight_decay: 0.0005     
-epochs: 50               
+epochs: 30                # Test local : 5 
 patience: 10             
 dropout_p: 0.4           
 mixup_alpha: 0.2

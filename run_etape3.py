@@ -65,7 +65,7 @@ if __name__ == "__main__":
     paths, labels = filter_and_remap(all_paths, all_labels)
     print(f"Dataset filtré (3 tumeurs)  : {len(paths)} images")
 
-    cfg_etape3 = {**cfg, "task": "binary"}
+    cfg_etape3 = {**cfg, "task": "multiclass"}
 
     #Construction des K-Folds
     print("\nCréation des folds")
