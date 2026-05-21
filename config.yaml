@@ -1,27 +1,24 @@
 seed: 42
 image_size: 224
 n_folds: 5
-batch_size: 32
-num_workers: 0 # 4 pour Kaggle, 0 en local
-dataset_root: "../dataset"
+num_workers: 0
+dataset_root: "dataset" 
+
 classes:
   - glioma
   - meningioma
   - notumor
   - pituitary
-samples_per_class: 500 # null pour utiliser tout le dataset
 
-# Etape 2
+samples_per_class: null  
+batch_size: 32          
+
 notumor_idx: 2
-threshold_low: 0.3
-threshold_high: 0.7
-lr: 0.0005
-weight_decay: 0.0005
-scheduler: "cosine"
-T_max: 30
-label_smoothing: 0.05
+pretrained: true
+
+lr: 0.001                
+weight_decay: 0.0005     
+epochs: 50               
+patience: 10             
+dropout_p: 0.4           
 mixup_alpha: 0.2
-dropout_p: 0.5
-epochs: 50
-patience: 12
-tta_n_augments: 5
