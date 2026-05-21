@@ -1,3 +1,4 @@
+import os
 import sys
 import yaml
 
@@ -8,7 +9,6 @@ from src.data import collect_data, build_folds, plot_fold_distribution
 def main():
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
-
 
     cfg["task"] = "binary"
 
@@ -32,7 +32,8 @@ def main():
         n_val   = len(fold["val_labels"])
         print(f"Fold {fold['fold']} : {n_train} train, {n_val} val")
 
-    # Visualiser la distribution
+    
+    os.makedirs("outputs", exist_ok=True)
     plot_fold_distribution(folds, cfg["classes"], save_path="outputs/fold_distribution.png")
 
     return folds, cfg
