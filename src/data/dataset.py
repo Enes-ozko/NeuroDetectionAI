@@ -5,6 +5,7 @@ from torch.utils.data import Dataset
 
 
 class BrainTumorDataset(Dataset):
+
     def __init__(self, paths: list, labels: list, transform=None, task="multiclass"):
         self.paths     = paths
         self.transform = transform
@@ -26,6 +27,7 @@ class BrainTumorDataset(Dataset):
 
 
 def collect_data(root: str, classes: list, samples_per_class: int = None, seed: int = 42):
+
     paths, labels = [], []
 
     for i, cls in enumerate(classes):

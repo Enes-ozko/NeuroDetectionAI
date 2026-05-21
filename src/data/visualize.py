@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def plot_fold_distribution(folds, classes, save_path="outputs/fold_distribution.png"):
+
     n_folds   = len(folds)
     n_classes = len(classes)
     x         = np.arange(n_classes)
@@ -24,4 +25,5 @@ def plot_fold_distribution(folds, classes, save_path="outputs/fold_distribution.
 
     plt.tight_layout()
     plt.savefig(save_path, dpi=150, bbox_inches="tight")
-    plt.show()
+    plt.close()
+    print(f"Distribution sauvegardée : {save_path}")
