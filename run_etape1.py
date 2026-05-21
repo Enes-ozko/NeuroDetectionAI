@@ -9,12 +9,8 @@ def main():
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
 
-  
-    print(f"Dataset      : {cfg['dataset_root']}")
-    print(f"Classes      : {cfg['classes']}")
-    print(f"Images/classe: {cfg['samples_per_class']}")
-    print(f"Folds        : {cfg['n_folds']}")
-    print(f"Tâche        : {cfg['task']}")
+
+    cfg["task"] = "binary"
 
     # Collecter les données
     paths, labels = collect_data(

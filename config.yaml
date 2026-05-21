@@ -13,17 +13,12 @@ classes:
 
 samples_per_class: 50
 batch_size: 8          
-
-
 task: binary           
 notumor_idx: 2
-
 lr: 0.0005            
 weight_decay: 0.0005   
 epochs: 5              
 patience: 10           
 dropout_p: 0.5       
-
 mixup_alpha: 0.2
-
 pretrained: true

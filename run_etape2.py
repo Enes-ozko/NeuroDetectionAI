@@ -8,10 +8,12 @@ from src.etape2 import get_binary_model, train_etape2, evaluate_etape2
 
 
 def main():
-    # Configuration
+    # Configuration commune
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
 
+    cfg["task"] = "binary"
+    
     device     = "cuda" if torch.cuda.is_available() else "cpu"
     pretrained = cfg.get("pretrained", True)
 
@@ -34,7 +36,7 @@ def main():
 
     # Évaluation du meilleur fold
     best = max(results, key=lambda r: r["best_val_acc"])
-    print(f"Évaluation du meilleur fold (Fold {best['fold']})")
+    print(f"\nÉvaluation du meilleur fold (Fold {best['fold']})")
 
     evaluate_etape2(
         model=best["model"],
