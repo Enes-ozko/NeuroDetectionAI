@@ -18,7 +18,7 @@ pretrained: true
 
 lr: 0.0005                
 weight_decay: 0.0005     
-epochs: 30                # Test local : 5 
+epochs: 50               # Test local : 5 
 patience: 10             
 dropout_p: 0.4           
 mixup_alpha: 0.2
