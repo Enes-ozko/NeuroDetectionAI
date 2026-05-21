@@ -1,24 +1,24 @@
-
 seed: 42
-image_size: 224       
-n_folds: 5             
-num_workers: 0         
+image_size: 224
+n_folds: 5
+num_workers: 0
+dataset_root: "dataset" 
 
-dataset_root: "../dataset/Training"
 classes:
-  - glioma            
-  - meningioma        
-  - notumor            
-  - pituitary         
+  - glioma
+  - meningioma
+  - notumor
+  - pituitary
 
-samples_per_class: 50
-batch_size: 8          
-task: binary           
+samples_per_class: null  
+batch_size: 32          
+
 notumor_idx: 2
-lr: 0.0005            
-weight_decay: 0.0005   
-epochs: 5              
-patience: 10           
-dropout_p: 0.5       
-mixup_alpha: 0.2
 pretrained: true
+
+lr: 0.001                
+weight_decay: 0.0005     
+epochs: 50               
+patience: 10             
+dropout_p: 0.4           
+mixup_alpha: 0.2
