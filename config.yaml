@@ -1,6 +1,6 @@
 seed: 42
 image_size: 224
-n_folds: 5                # Test local : 2 
+n_folds: 3                # Test local : 2 
 num_workers: 2            # Test local : 0 
 dataset_root: "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Training" # Test local : "../dataset/Training"
 
