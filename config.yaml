@@ -1,6 +1,6 @@
 seed: 42
 image_size: 224
-n_folds: 2
+n_folds: 5
 num_workers: 2
 dataset_root: "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Training"
 
@@ -18,7 +18,7 @@ pretrained: true
 
 lr: 0.0005
 weight_decay: 0.0005
-epochs: 35
+epochs: 50
 patience: 10
 dropout_p: 0.4
 mixup_alpha: 0.2
