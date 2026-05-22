@@ -2,7 +2,7 @@ seed: 42
 image_size: 224
 n_folds: 2
 num_workers: 2
-dataset_root: "/kaggle/input/brain-tumor-mri-dataset/Training"
+dataset_root: "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Training"
 
 classes:
   - glioma
