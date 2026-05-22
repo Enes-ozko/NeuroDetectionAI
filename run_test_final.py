@@ -10,7 +10,6 @@ from sklearn.metrics import (
     classification_report, confusion_matrix, ConfusionMatrixDisplay, roc_auc_score
 )
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ".")
 
 from src.data.dataset import collect_data, BrainTumorDataset
@@ -22,9 +21,10 @@ CLASSES_4     = ["glioma", "meningioma", "notumor", "pituitary"]
 CLASSES_BIN   = ["Sain", "Tumeur"]
 CLASSES_MULTI = ["Gliome", "Méningiome", "Pituitaire"]
 REMAP         = {0: 0, 1: 1, 3: 2}
+OUTPUTS       = "/kaggle/working/NeuroDetectionAI/outputs"
 
 if __name__ == "__main__":
-    os.makedirs("outputs", exist_ok=True)
+    os.makedirs(OUTPUTS, exist_ok=True)
 
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
@@ -39,11 +39,11 @@ if __name__ == "__main__":
 
     print("\nChargement des modèles")
     model_bin = get_binary_model(dropout_p=0.0, pretrained=False)
-    model_bin.load_state_dict(torch.load("outputs/mobilenet_binaire.pth", map_location=device))
+    model_bin.load_state_dict(torch.load(f"{OUTPUTS}/mobilenet_binaire.pth", map_location=device))
     model_bin.to(device).eval()
 
     model_multi = get_multiclass_model(num_classes=3, dropout=0.0)
-    model_multi.load_state_dict(torch.load("outputs/model_etape3.pth", map_location=device))
+    model_multi.load_state_dict(torch.load(f"{OUTPUTS}/model_etape3.pth", map_location=device))
     model_multi.to(device).eval()
     print("Modèles chargés")
 
@@ -97,9 +97,9 @@ if __name__ == "__main__":
     ConfusionMatrixDisplay(cm2, display_labels=CLASSES_BIN).plot(ax=ax, cmap="Blues", colorbar=False)
     ax.set_title(f"Binaire - Acc={acc2:.3f}  AUC={auc2:.3f}")
     plt.tight_layout()
-    plt.savefig("outputs/test_etape2_confusion.png", dpi=150)
+    plt.savefig(f"{OUTPUTS}/test_etape2_confusion.png", dpi=150)
     plt.close()
-    print("outputs/test_etape2_confusion.png")
+    print(f"{OUTPUTS}/test_etape2_confusion.png")
 
     multi_preds, multi_labels = [], []
 
@@ -130,6 +130,6 @@ if __name__ == "__main__":
     ConfusionMatrixDisplay(cm3, display_labels=CLASSES_MULTI).plot(ax=ax, cmap="Greens", colorbar=False)
     ax.set_title(f"Multiclasse - Acc={acc3:.3f}")
     plt.tight_layout()
-    plt.savefig("outputs/test_etape3_confusion.png", dpi=150)
+    plt.savefig(f"{OUTPUTS}/test_etape3_confusion.png", dpi=150)
     plt.close()
-    print("outputs/test_etape3_confusion.png")
+    print(f"{OUTPUTS}/test_etape3_confusion.png")
