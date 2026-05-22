@@ -1,24 +1,24 @@
 seed: 42
 image_size: 224
-n_folds: 2                # Test local : 2 
-num_workers: 2            # Test local : 0 
-import os
-print(os.listdir("/kaggle/input/"))
+n_folds: 2
+num_workers: 2
+dataset_root: "/kaggle/input/brain-tumor-mri-dataset/Training"
+
 classes:
   - glioma
   - meningioma
   - notumor
   - pituitary
 
-samples_per_class: null   # Test local : 50 
-batch_size: 32          
+samples_per_class: null
+batch_size: 32
 
 notumor_idx: 2
 pretrained: true
 
-lr: 0.0005                
-weight_decay: 0.0005     
-epochs: 35               # Test local : 5 
-patience: 10             
-dropout_p: 0.4           
+lr: 0.0005
+weight_decay: 0.0005
+epochs: 35
+patience: 10
+dropout_p: 0.4
 mixup_alpha: 0.2
