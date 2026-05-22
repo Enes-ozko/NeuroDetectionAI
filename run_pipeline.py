@@ -89,7 +89,7 @@ def main():
         return
 
    
-    img_test = "test.jpg"  
+    img_test = "G.jpg"  
 
     if os.path.exists(img_test):
         analyze_mri(img_test, model_bin, model_multi, transform, device)
