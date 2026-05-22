@@ -10,7 +10,9 @@ from sklearn.metrics import (
     classification_report, confusion_matrix, ConfusionMatrixDisplay, roc_auc_score
 )
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ".")
+
 from src.data.dataset import collect_data, BrainTumorDataset
 from src.data.transforms import get_transforms
 from src.etape2.model import get_binary_model
@@ -35,7 +37,6 @@ if __name__ == "__main__":
         device = torch.device("cpu")
     print(f"Appareil : {device}")
 
-    # Chargement des modèles 
     print("\nChargement des modèles")
     model_bin = get_binary_model(dropout_p=0.0, pretrained=False)
     model_bin.load_state_dict(torch.load("outputs/mobilenet_binaire.pth", map_location=device))
@@ -46,7 +47,6 @@ if __name__ == "__main__":
     model_multi.to(device).eval()
     print("Modèles chargés")
 
-    # Chargement du dossier Testing 
     test_root = cfg["dataset_root"].replace("Training", "Testing")
     print(f"\nDossier Testing : {test_root}")
 
@@ -70,7 +70,6 @@ if __name__ == "__main__":
         pin_memory=torch.cuda.is_available(),
     )
 
-    # Évaluation binaire 
     bin_preds, bin_labels, bin_scores = [], [], []
 
     with torch.no_grad():
@@ -102,14 +101,13 @@ if __name__ == "__main__":
     plt.close()
     print("outputs/test_etape2_confusion.png")
 
-    # Évaluation multiclasse 
     multi_preds, multi_labels = [], []
 
     with torch.no_grad():
         for imgs, lbls in test_loader:
             for i in range(len(lbls)):
                 lbl = lbls[i].item()
-                if lbl == 2:          
+                if lbl == 2:
                     continue
                 img_t  = imgs[i].unsqueeze(0).to(device)
                 logits = model_bin(img_t)
@@ -119,7 +117,7 @@ if __name__ == "__main__":
                 if score >= 0.5:
                     pred = torch.argmax(F.softmax(model_multi(img_t), dim=1)).item()
                 else:
-                    pred = 0          
+                    pred = 0
                 multi_preds.append(pred)
                 multi_labels.append(REMAP[lbl])
 
@@ -135,4 +133,3 @@ if __name__ == "__main__":
     plt.savefig("outputs/test_etape3_confusion.png", dpi=150)
     plt.close()
     print("outputs/test_etape3_confusion.png")
-
