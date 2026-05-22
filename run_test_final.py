@@ -6,38 +6,39 @@ import torch.nn.functional as F
 import numpy as np
 import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
-from sklearn.metrics import (
-    classification_report, confusion_matrix, ConfusionMatrixDisplay, roc_auc_score
-)
+from sklearn.metrics import classification_report, confusion_matrix
 
 sys.path.insert(0, ".")
-
 from src.data.dataset import collect_data, BrainTumorDataset
 from src.data.transforms import get_transforms
 from src.etape2.model import get_binary_model
 from src.etape3.model import build_model as get_multiclass_model
 
-CLASSES_4     = ["glioma", "meningioma", "notumor", "pituitary"]
+# Configuration des classes
 CLASSES_BIN   = ["Sain", "Tumeur"]
 CLASSES_MULTI = ["Gliome", "Méningiome", "Pituitaire"]
-REMAP         = {0: 0, 1: 1, 3: 2}
-OUTPUTS       = "/kaggle/working/NeuroDetectionAI/outputs"
+REMAP         = {0: 0, 1: 1, 3: 2} # 0:glioma, 1:meningioma, 3:pituitary
 
 if __name__ == "__main__":
+    OUTPUTS = "outputs"
     os.makedirs(OUTPUTS, exist_ok=True)
+    
+    possible_paths = ["dataset/Testing", "../dataset/Testing", "Testing"]
+    TEST_ROOT = next((p for p in possible_paths if os.path.exists(p)), None)
+    
+    if not TEST_ROOT:
+        print(f"ERREUR : Dossier de test introuvable.")
+        sys.exit(1)
+        
+    print(f"Dossier Testing trouvé : {os.path.abspath(TEST_ROOT)}")
 
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
 
-    if torch.backends.mps.is_available():
-        device = torch.device("mps")
-    elif torch.cuda.is_available():
-        device = torch.device("cuda")
-    else:
-        device = torch.device("cpu")
-    print(f"Appareil : {device}")
+    # Appareil
+    device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
-    print("\nChargement des modèles")
+    # Chargement modèles
     model_bin = get_binary_model(dropout_p=0.0, pretrained=False)
     model_bin.load_state_dict(torch.load(f"{OUTPUTS}/mobilenet_binaire.pth", map_location=device))
     model_bin.to(device).eval()
@@ -45,91 +46,42 @@ if __name__ == "__main__":
     model_multi = get_multiclass_model(num_classes=3, dropout=0.0)
     model_multi.load_state_dict(torch.load(f"{OUTPUTS}/model_etape3.pth", map_location=device))
     model_multi.to(device).eval()
-    print("Modèles chargés")
 
-    test_root = cfg["dataset_root"].replace("Training", "Testing")
-    print(f"\nDossier Testing : {test_root}")
+    # Chargement Data
+    paths, labels = collect_data(root=TEST_ROOT, classes=cfg["classes"], samples_per_class=None, seed=cfg["seed"])
+    print(f"Images chargées : {len(paths)}")
+    
+    test_ds = BrainTumorDataset(paths, labels, transform=get_transforms("val", cfg["image_size"]), task="multiclass")
+    test_loader = DataLoader(test_ds, batch_size=cfg["batch_size"], shuffle=False)
 
-    paths, labels = collect_data(
-        root=test_root,
-        classes=cfg["classes"],
-        samples_per_class=None,
-        seed=cfg["seed"],
-    )
-    print(f"Total images : {len(paths)}")
-    for i, cls in enumerate(CLASSES_4):
-        print(f"  {cls:12s} : {labels.count(i)} images")
-
-    transform   = get_transforms("val", cfg["image_size"])
-    test_ds     = BrainTumorDataset(paths, labels, transform=transform, task="multiclass")
-    test_loader = DataLoader(
-        test_ds,
-        batch_size=cfg["batch_size"],
-        shuffle=False,
-        num_workers=cfg["num_workers"],
-        pin_memory=torch.cuda.is_available(),
-    )
-
-    bin_preds, bin_labels, bin_scores = [], [], []
-
-    with torch.no_grad():
-        for imgs, lbls in test_loader:
-            imgs   = imgs.to(device)
-            logits = model_bin(imgs)
-            if logits.shape[1] == 1:
-                scores = torch.sigmoid(logits).squeeze(1).cpu().numpy()
-                preds  = (scores >= 0.5).astype(int)
-            else:
-                probs  = F.softmax(logits, dim=1).cpu().numpy()
-                scores = probs[:, 1]
-                preds  = probs.argmax(axis=1)
-            bin_preds.extend(preds)
-            bin_labels.extend([0 if l == 2 else 1 for l in lbls.numpy()])
-            bin_scores.extend(scores)
-
-    acc2 = np.mean(np.array(bin_preds) == np.array(bin_labels))
-    auc2 = roc_auc_score(bin_labels, bin_scores)
-    print(f"Accuracy : {acc2:.4f} | AUC : {auc2:.4f}")
-    print(classification_report(bin_labels, bin_preds, target_names=CLASSES_BIN))
-
-    cm2 = confusion_matrix(bin_labels, bin_preds)
-    fig, ax = plt.subplots(figsize=(5, 4))
-    ConfusionMatrixDisplay(cm2, display_labels=CLASSES_BIN).plot(ax=ax, cmap="Blues", colorbar=False)
-    ax.set_title(f"Binaire - Acc={acc2:.3f}  AUC={auc2:.3f}")
-    plt.tight_layout()
-    plt.savefig(f"{OUTPUTS}/test_etape2_confusion.png", dpi=150)
-    plt.close()
-    print(f"{OUTPUTS}/test_etape2_confusion.png")
-
+    # Inférence
+    bin_preds, bin_labels = [], []
     multi_preds, multi_labels = [], []
 
     with torch.no_grad():
         for imgs, lbls in test_loader:
-            for i in range(len(lbls)):
-                lbl = lbls[i].item()
-                if lbl == 2:
-                    continue
-                img_t  = imgs[i].unsqueeze(0).to(device)
-                logits = model_bin(img_t)
-                score  = (torch.sigmoid(logits).item()
-                          if logits.shape[1] == 1
-                          else F.softmax(logits, dim=1)[0][1].item())
-                if score >= 0.5:
-                    pred = torch.argmax(F.softmax(model_multi(img_t), dim=1)).item()
-                else:
-                    pred = 0
-                multi_preds.append(pred)
-                multi_labels.append(REMAP[lbl])
+            imgs = imgs.to(device)
+            logits_bin = model_bin(imgs)
+            scores_bin = torch.sigmoid(logits_bin).squeeze(1) if logits_bin.shape[1] == 1 else F.softmax(logits_bin, dim=1)[:, 1]
+            
+            for i in range(len(imgs)):
+                lbl_val = lbls[i].item()
+                score = scores_bin[i].item()
+                is_tumor = score >= 0.5
+                
+                # Binaire
+                bin_preds.append(int(is_tumor))
+                bin_labels.append(0 if lbl_val == 2 else 1)
+                
+                # Multiclasse 
+                if is_tumor and lbl_val in REMAP:
+                    logits_multi = model_multi(imgs[i].unsqueeze(0))
+                    pred = torch.argmax(F.softmax(logits_multi, dim=1)).item()
+                    multi_preds.append(pred)
+                    multi_labels.append(REMAP[lbl_val])
 
-    acc3 = np.mean(np.array(multi_preds) == np.array(multi_labels))
-    print(f"Accuracy : {acc3:.4f}")
+    # 6. Rapports
+    print("Binaire :")
+    print(classification_report(bin_labels, bin_preds, target_names=CLASSES_BIN))
+    print("Multiclasse :")
     print(classification_report(multi_labels, multi_preds, target_names=CLASSES_MULTI))
-
-    cm3 = confusion_matrix(multi_labels, multi_preds)
-    fig, ax = plt.subplots(figsize=(6, 5))
-    ConfusionMatrixDisplay(cm3, display_labels=CLASSES_MULTI).plot(ax=ax, cmap="Greens", colorbar=False)
-    ax.set_title(f"Multiclasse - Acc={acc3:.3f}")
-    plt.tight_layout()
-    plt.savefig(f"{OUTPUTS}/test_etape3_confusion.png", dpi=150)
-    plt.close()
-    print(f"{OUTPUTS}/test_etape3_confusion.png")
