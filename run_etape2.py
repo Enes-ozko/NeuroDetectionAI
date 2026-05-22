@@ -1,3 +1,4 @@
+import os
 import sys
 import yaml
 import torch
@@ -8,16 +9,19 @@ from src.etape2 import get_binary_model, train_etape2, evaluate_etape2
 
 
 def main():
+    # Créer le dossier outputs en premier
+    os.makedirs("outputs", exist_ok=True)
+
     # Configuration commune
     with open("config.yaml") as f:
         cfg = yaml.safe_load(f)
 
     cfg["task"] = "binary"
-    
+
     device     = "cuda" if torch.cuda.is_available() else "cpu"
     pretrained = cfg.get("pretrained", True)
 
-    # Données 
+    # Données
     paths, labels = collect_data(
         root=cfg["dataset_root"],
         classes=cfg["classes"],
@@ -46,9 +50,8 @@ def main():
         save_path="outputs/etape2_evaluation.png",
     )
 
-# === LIGNES À AJOUTER ICI ===
     torch.save(best["model"].state_dict(), "outputs/mobilenet_binaire.pth")
-    print("\n✅ Modèle binaire sauvegardé avec succès dans outputs/mobilenet_binaire.pth !")
+    print("\nModèle binaire sauvegardé avec succès dans outputs/mobilenet_binaire.pth !")
 
 
 if __name__ == "__main__":

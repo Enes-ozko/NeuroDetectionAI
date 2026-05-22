@@ -12,6 +12,9 @@ def main():
 
     cfg["task"] = "binary"
 
+    # Créer le dossier outputs en premier
+    os.makedirs("outputs", exist_ok=True)
+
     # Collecter les données
     paths, labels = collect_data(
         root=cfg["dataset_root"],
@@ -32,8 +35,6 @@ def main():
         n_val   = len(fold["val_labels"])
         print(f"Fold {fold['fold']} : {n_train} train, {n_val} val")
 
-    
-    os.makedirs("outputs", exist_ok=True)
     plot_fold_distribution(folds, cfg["classes"], save_path="outputs/fold_distribution.png")
 
     return folds, cfg
