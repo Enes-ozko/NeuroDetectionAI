@@ -12,24 +12,32 @@ from src.data.transforms import get_transforms
 from src.etape2.model import get_binary_model
 from src.etape3.model import build_model as get_multiclass_model
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-TEST_ROOT = os.path.join(BASE_DIR, "..", "dataset", "Testing")
-OUTPUTS = os.path.join(BASE_DIR, "outputs")
-
 CLASSES_BIN   = ["Sain", "Tumeur"]
 CLASSES_MULTI = ["Gliome", "Méningiome", "Pituitaire"]
-REMAP         = {0: 0, 1: 1, 3: 2}
+REMAP         = {0: 0, 1: 1, 3: 2} 
 
 if __name__ == "__main__":
+    if os.path.exists("/kaggle/input"):
+        # Environnement Kaggle
+        BASE_DIR = "/kaggle/working/NeuroDetectionAI"
+        OUTPUTS = os.path.join(BASE_DIR, "outputs")
+        TEST_ROOT = "/kaggle/input/datasets/masoudnickparvar/brain-tumor-mri-dataset/Testing"
+    else:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        OUTPUTS = os.path.join(BASE_DIR, "outputs")
+        TEST_ROOT = os.path.join(BASE_DIR, "..", "dataset", "Testing")
+
+    print(f"Dossier Testing cherché : {TEST_ROOT}")
     
     if not os.path.exists(TEST_ROOT):
-        print(f"ERREUR : Le dossier {TEST_ROOT} n'existe pas.")
+        print(f"ERREUR : Le dossier {TEST_ROOT} est introuvable !")
         sys.exit(1)
 
     with open(os.path.join(BASE_DIR, "config.yaml")) as f:
         cfg = yaml.safe_load(f)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+    print(f"Appareil utilisé : {device}")
 
     # Chargement modèles
     model_bin = get_binary_model(dropout_p=0.0, pretrained=False)
@@ -40,9 +48,9 @@ if __name__ == "__main__":
     model_multi.load_state_dict(torch.load(os.path.join(OUTPUTS, "model_etape3.pth"), map_location=device))
     model_multi.to(device).eval()
 
-    # Chargement Data 
+    # Chargement Data
     paths, labels = collect_data(root=TEST_ROOT, classes=cfg["classes"], samples_per_class=None, seed=cfg["seed"])
-    print(f"Images chargées : {len(paths)}")
+    print(f"{len(paths)} images chargées avec succès.")
     
     test_ds = BrainTumorDataset(paths, labels, transform=get_transforms("val", cfg["image_size"]), task="multiclass")
     test_loader = DataLoader(test_ds, batch_size=cfg["batch_size"], shuffle=False)
@@ -70,5 +78,6 @@ if __name__ == "__main__":
                     multi_preds.append(pred)
                     multi_labels.append(REMAP[lbl_val])
 
-    print(classification_report(bin_labels, bin_preds, target_names=CLASSES_BIN))
-    print(classification_report(multi_labels, multi_preds, target_names=CLASSES_MULTI))
+    # Affichage des résultats
+    print("Binaire :\n", classification_report(bin_labels, bin_preds, target_names=CLASSES_BIN))
+    print("Multiclasse :\n", classification_report(multi_labels, multi_preds, target_names=CLASSES_MULTI))
