@@ -7,7 +7,7 @@ def train_one_fold(model, fold_data, cfg, device):
     train_loader = fold_data["train_loader"]
     val_loader   = fold_data["val_loader"]
 
-    optimizer = torch.optim.Adam(model.classifier.parameters(), lr=cfg["lr"])
+    optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=cfg["lr"])
     loss_fn = nn.CrossEntropyLoss()
 
     best_val_acc = 0.0
